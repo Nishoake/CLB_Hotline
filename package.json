@@ -7,5 +7,17 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Nishoake",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nishoake/CLB_Hotline.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nishoake/CLB_Hotline/issues"
+  },
+  "homepage": "https://github.com/Nishoake/CLB_Hotline#readme",
+  "dependencies": {
+    "create-react-app": "^4.0.1",
+    "node": "^15.3.0"
+  }
 }

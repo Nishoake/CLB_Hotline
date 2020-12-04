@@ -1,0 +1,77 @@
+.parent {
+  background: pink;
+  color: white;
+  font-family: 'Alata', sans-serif;
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  grid-template-rows: auto auto 500px auto auto;
+  gap: 50px 15px;
+  grid-template-areas: 
+    "title title title"
+    ". hero ."
+    ". forza ."
+    ". logo ."
+    ". icon .";
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: title;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: hero;
+}
+
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: logo;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: icon;
+}
+
+.conversational-form {
+  grid-area: forza;
+  width: 75%;
+  height: 43%;
+  border: 1px solid #ddd;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  overflow: auto;
+  z-index: 1;
+  visibility: visible;
+}
+
+/* .forza {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: forza;
+} */
+
+/* .test {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-area: test;
+  visibility: hidden;
+} */
