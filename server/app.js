@@ -1,7 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-
+const Twilio = require('twilio')
+const detectModule = require('./controllers/detection')
+const detect = detectModule.detect
+require('dotenv').config()
 
 require('dotenv').config()
 
@@ -22,6 +25,19 @@ const port = process.env.PORT || 3005
 app.listen(port, () => {
   console.log(`Certified Lover Boy Hotline app is currently listening at ${port}`)
 })
+
+// Detection Constants
+const artistID = process.env.ARTIST_ID
+let clientResponse = {
+  name: '',
+  image: '',
+  link: '',
+  boolean: false
+}
+
+// Running the Detection Algorithm
+detect(artistID, clientResponse)
+
 
 // -------------------------------
 // Routes
