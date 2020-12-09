@@ -59,3 +59,91 @@ async function getAlbum(artistID) {
     console.log("Something went wrong requesting the artist album", err)
   }
 }
+
+// Twilio Constants
+const Twilio_SID = process.env.TWILIO_ACCOUNT_SID
+const Twilio_Token = process.env.TWILIO_AUTH_TOKEN
+const Twilio_Number = process.env.TWILIO_NUMBER
+
+const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
+
+// Updating the clientResponse with the newly droped album details
+function updateClientRespone(clientResponse, newName, newImage, newLink) {
+  clientResponse.name = newName
+  clientResponse.image = newImage
+  clientResponse.link = newLink
+  clientResponse.boolean = true
+}
+
+// Send text message with Twilio SMS API
+async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistName, albumName, albumLink) {
+  console.log('The CLB Hotline is currently in production mode')
+
+  let response = await TwilioApi.messages.create({
+    body: `Hey ${Recipient_Name}! ${artistName} has just dropped ${albumName}🔥 Check it out at: ${albumLink} 🎧`,
+    from: Twilio_Number,
+    to: Twilio_Recipient
+  })
+
+  console.log(response.sid)
+}
+
+// Sending text messages to all subscribers
+async function hotlineBling(albumInfo) {
+  // Destructuring Album object
+  const artistName = albumInfo.artistName
+  const albumName = albumInfo.albumName
+  const albumLink = albumInfo.link
+
+  // Array of subscribers
+  const subscribers = await Subscriber.find()
+  console.log('Start!')
+
+  for (let i = 0; i < subscribers.length; i++) {
+    const name = subscribers[i].name
+    const number = subscribers[i].number
+
+    await sendText(Twilio_Number, number, name, artistName, albumName, albumLink)
+  }
+
+  console.log('Done!')
+}
+
+// Detection Algorithm
+async function detect(refAlbum, artistID, clientResponse) {
+  console.log('the detect function is being run right now')
+
+  // Retrieving the latest Album from the Spotify API
+  let latestAlbum = await getAlbum(artistID)
+  console.log(`latestAlbum: ${latestAlbum.albumName}`)
+
+  // Comparing the lastest album to the ref album
+  if (latestAlbum.albumName === refAlbum.albumName) {
+    setTimeout(detect, 30000, refAlbum, artistID, clientResponse)
+  }
+  else {
+    // Sending Texts
+    console.log(`${latestAlbum.albumName} has dropped!`)
+    hotlineBling(latestAlbum)
+    console.log('Texts messages have been sent!')
+
+    // Updating the Client's NewAlbum component
+    updateClientRespone(clientResponse, latestAlbum.albumName, latestAlbum.image, latestAlbum.link)
+  }
+}
+
+
+// Function Implementing the Detection Algorithm and the associated overhead
+async function detectAlbum(artistID, clientResponse) {
+  // Initializing the reference album to compare against
+  const refAlbum = await getAlbum(artistID)
+  console.log(`refAlbum: ${refAlbum.albumName}`)
+
+  // Calling the Detection Algorithm
+  detect(refAlbum, artistID, clientResponse)
+}
+
+
+module.exports = {
+  detect: detectAlbum,
+}
