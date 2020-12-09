@@ -11,19 +11,19 @@ export default function MyForm() {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_1',
-      'cf-questions': "Hey it's Drake 🦉"
+      'cf-questions': 'Yo what\'s going on? It\'s The Boy, aka Drake 🦉'
     },
     {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_2',
-      'cf-questions': "In case you were wondering, I'm still making the final tweaks on CLB 🌹"
+      'cf-questions': 'In case you were wondering, I\'m still making the final tweaks to CLB 🌹'
     },
     {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_3',
-      'cf-questions': "But to make it up to you as a fan I will personally text you once I drop CLB 💽"
+      'cf-questions': 'But to make it up to you as a fan I will personally text you once I drop CLB 💽'
     },
     {
       'tag': 'input',
@@ -80,9 +80,9 @@ export default function MyForm() {
           robot: {
             robotResponseTime: 1000,
           },
-          user: {
-            showThinking: true,
-          }
+          // user: {
+          //   showThinking: true,
+          // }
         },
         preventAutoFocus: false,
         loadExternalStyleSheet: true
@@ -104,3 +104,50 @@ export default function MyForm() {
     </div>
   )
 }
+
+
+
+
+var flowCallback = function (dto, success, error) {
+  console.log("dto....", dto, success, error);
+
+  /*
+                The concept is that this could just as well be an AJAX request to 
+                your server where the response would yield a new qeustion that 
+                would be injected into the form.
+                 */
+
+  if (window.incrementedValue < 3) {
+    window.incrementedValue++;
+    window.ConversationalForm.addTags([
+      {
+        tag: "select",
+        name: "country",
+        "cf-questions":
+          "Where are you from? (I have asked you this " +
+          window.incrementedValue +
+          " time(s))",
+        "cf-input-placeholder": "country code",
+        multiple: false,
+        children: [
+          { tag: "option", "cf-label": "USA", value: "usa" },
+          { tag: "option", "cf-label": "UK", value: "uk" }
+        ]
+      }
+    ]);
+  }
+
+  // We assume every answer is valid. If that wasnt the case we would call error()
+  success();
+};
+
+// called from examples code
+window.incrementedValue = 0;
+var conversationalForm = window.cf.ConversationalForm.startTheConversation({
+  formEl: document.getElementById("form"),
+  context: document.getElementById("cf-context"),
+  flowStepCallback: flowCallback,
+  submitCallback: function () {
+    conversationalForm.addRobotChatResponse("You are done. Thank you.");
+  }
+});
