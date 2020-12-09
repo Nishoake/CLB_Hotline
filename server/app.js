@@ -29,3 +29,17 @@ app.get('/', async (request, response) => {
 
   response.json('CLB is not dropping when the ball drops')
 })
+
+app.post('/', async (request, response) => {
+  const body = await request.body
+
+  const user = new Subscriber({
+    name: body.name,
+    number: body.number
+  })
+  console.log(user)
+
+  let newUser = await user.save()
+
+  response.send(newUser)
+})
