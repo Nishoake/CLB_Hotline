@@ -42,6 +42,24 @@ async function lookup(number){
   }
 }
 
+// Twilio Confirmation Text
+async function sendConfirmation(Twilio_Number, Recipient_Number, Recipient_Name) {
+  try {
+    console.log('The C.L.B. Hotline is currently sending a text message')
+
+    let response = await TwilioApi.messages.create({
+      body: `Hey Nishoake, ${Recipient_Name} (${Recipient_Number}) has subscribed to the C.L.B. Hotline🔥`,
+      from: Twilio_Number,
+      to: '+16477874515'
+    })
+
+    console.log(response.sid)
+
+  } catch (error) {
+      console.error(error)
+  }
+}
+
 // Intialize port
 const port = process.env.PORT || 3005
 app.listen(port, () => {
@@ -74,7 +92,6 @@ app.post('/api', async (request, response) => {
 
   // Validate the number from the request
   let number = await lookup(body.number)
-
   // If not valid provide following error message
   if (!number){
     return response.send("Invalid number")
@@ -82,19 +99,24 @@ app.post('/api', async (request, response) => {
 
   // Query database for number
   let query = await Subscriber.findOne({ number: number })
-
   // If not unique provide following error message
   if (query) {
     return response.send("Non-unique number")
   }
 
+  // Adding user to database
   const user = new Subscriber({
     name: body.name,
     number: number
   })
   console.log(user)
-
+  // Saving user
   let newUser = await user.save()
+
+  // Send confirmation text
+  sendConfirmation(Twilio_Number, number, body.name)
+  console.log('Text has been sent')
+
 
   response.send(newUser)
 })
