@@ -71,8 +71,16 @@ export default function MyForm() {
       console.log("Firstname:", newUserInfo.firstname)
       console.log("phone-number:", newUserInfo.phoneNumber)
 
-      await newUser.addUser(newUserInfo)
-      cf.addRobotChatResponse("Woi Oi! You've been subscribed! I'll get one of my associates to text you when CLB drops.")
+      let response = await newUser.addUser(newUserInfo)
+      console.log(`Response: ${response}`)
+
+      if (response === "Invalid number"){
+        cf.addRobotChatResponse("The number is invalid G")
+      } else if (response === "Non-unique number"){
+        cf.addRobotChatResponse("The number has already been added")
+      } else{
+        cf.addRobotChatResponse("Woi Oi! You've been subscribed! I'll get one of my associates to text you when CLB drops.")
+      }
     }
 
     let cf = ConversationalForm.startTheConversation({

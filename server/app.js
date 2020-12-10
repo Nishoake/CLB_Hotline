@@ -20,6 +20,25 @@ const Subscriber = require('./models/subscriber')
 const MONGODB_URI = process.env.MONGODB_URI
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
 
+// Twilio Constants
+const Twilio_SID = process.env.TWILIO_ACCOUNT_SID
+const Twilio_Token = process.env.TWILIO_AUTH_TOKEN
+const Twilio_Number = process.env.TWILIO_NUMBER
+
+// Instantiating Twilio API Object
+const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
+
+// Twilio Lookup
+async function lookup(number){
+  try{
+    let result = await TwilioApi.lookups.phoneNumbers(number).fetch({ countryCode: 'CA' })
+    console.log(result)
+    return result.phone_number
+  } catch(error){
+    console.error(error)
+  }
+}
+
 // Intialize port
 const port = process.env.PORT || 3005
 app.listen(port, () => {
@@ -49,6 +68,13 @@ app.get('/', async (request, response) => {
 
 app.post('/api', async (request, response) => {
   const body = await request.body
+
+  let number = await lookup(body.number)
+  console.log(number)
+
+  if(!number){
+    return response.send("Invalid number")
+  }
 
   const user = new Subscriber({
     name: body.name,
