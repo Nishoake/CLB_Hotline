@@ -47,7 +47,7 @@ app.get('/', async (request, response) => {
   response.json('CLB is not dropping when the ball drops')
 })
 
-app.post('/', async (request, response) => {
+app.post('/api', async (request, response) => {
   const body = await request.body
 
   const user = new Subscriber({

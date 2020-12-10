@@ -1,11 +1,11 @@
 import React from 'react'
-import Cform from './components/Cform'
+import CForm from './components/CForm'
 import './styles/styles.css'
 
 function App() {
   return (
     <div className="parent">
-      <Cform />
+      <CForm />
     </div>
   )
 }

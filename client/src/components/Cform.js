@@ -1,5 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { ConversationalForm } from 'conversational-form';
+import React, { useEffect, useRef } from 'react'
+import { ConversationalForm } from 'conversational-form'
+import newUser from '../services/newUser'
 import '../styles/styles.css'
 
 export default function MyForm() {
@@ -45,8 +46,8 @@ export default function MyForm() {
     {
       'tag': 'input',
       'type': 'tel',
-      'name': 'phone-number',
-      'id': 'phone-number',
+      'name': 'phoneNumber',
+      'id': 'phoneNumber',
       'required': '',
       'minlength': '10',
       'maxlength': '10',
@@ -64,10 +65,14 @@ export default function MyForm() {
   useEffect(function mount() {
     
 
-    function submitCallback() {
-      let formDataSerialized = cf.getFormData(true);
-      console.log("Formdata, obj:", formDataSerialized);
-      cf.addRobotChatResponse("You are done. Check the dev console for form data output.")
+    async function submitCallback() {
+      let newUserInfo = cf.getFormData(true)
+      console.log("Formdata, obj:", newUserInfo)
+      console.log("Firstname:", newUserInfo.firstname)
+      console.log("phone-number:", newUserInfo.phoneNumber)
+
+      await newUser.addUser(newUserInfo)
+      cf.addRobotChatResponse("Woi Oi! You've been subscribed! I'll get one of my associates to text you when CLB drops.")
     }
 
     let cf = ConversationalForm.startTheConversation({
@@ -104,50 +109,3 @@ export default function MyForm() {
     </div>
   )
 }
-
-
-
-
-var flowCallback = function (dto, success, error) {
-  console.log("dto....", dto, success, error);
-
-  /*
-                The concept is that this could just as well be an AJAX request to 
-                your server where the response would yield a new qeustion that 
-                would be injected into the form.
-                 */
-
-  if (window.incrementedValue < 3) {
-    window.incrementedValue++;
-    window.ConversationalForm.addTags([
-      {
-        tag: "select",
-        name: "country",
-        "cf-questions":
-          "Where are you from? (I have asked you this " +
-          window.incrementedValue +
-          " time(s))",
-        "cf-input-placeholder": "country code",
-        multiple: false,
-        children: [
-          { tag: "option", "cf-label": "USA", value: "usa" },
-          { tag: "option", "cf-label": "UK", value: "uk" }
-        ]
-      }
-    ]);
-  }
-
-  // We assume every answer is valid. If that wasnt the case we would call error()
-  success();
-};
-
-// called from examples code
-window.incrementedValue = 0;
-var conversationalForm = window.cf.ConversationalForm.startTheConversation({
-  formEl: document.getElementById("form"),
-  context: document.getElementById("cf-context"),
-  flowStepCallback: flowCallback,
-  submitCallback: function () {
-    conversationalForm.addRobotChatResponse("You are done. Thank you.");
-  }
-});
