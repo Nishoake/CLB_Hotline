@@ -80,6 +80,14 @@ app.post('/api', async (request, response) => {
     return response.send("Invalid number")
   }
 
+  // Query database for number
+  let query = await Subscriber.findOne({ number: number })
+
+  // If not unique provide following error message
+  if (query) {
+    return response.send("Non-unique number")
+  }
+
   const user = new Subscriber({
     name: body.name,
     number: number
