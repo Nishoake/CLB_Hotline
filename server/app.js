@@ -31,11 +31,14 @@ const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
 // Twilio Lookup
 async function lookup(number){
   try{
+    // Validate number using Twilio Lookup
     let result = await TwilioApi.lookups.phoneNumbers(number).fetch({ countryCode: 'CA' })
-    console.log(result)
-    return result.phone_number
+
+    // Returning the number in format expected by database
+    return result.phoneNumber
   } catch(error){
-    console.error(error)
+      console.error(error)
+      return null
   }
 }
 
@@ -69,16 +72,17 @@ app.get('/', async (request, response) => {
 app.post('/api', async (request, response) => {
   const body = await request.body
 
+  // Validate the number from the request
   let number = await lookup(body.number)
-  console.log(number)
 
-  if(!number){
+  // If not valid provide following error message
+  if (!number){
     return response.send("Invalid number")
   }
 
   const user = new Subscriber({
     name: body.name,
-    number: body.number
+    number: number
   })
   console.log(user)
 
