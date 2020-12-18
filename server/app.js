@@ -4,7 +4,6 @@ const mongoose = require('mongoose')
 const Twilio = require('twilio')
 const detectModule = require('./controllers/detection')
 const detect = detectModule.detect
-require('dotenv').config()
 
 require('dotenv').config()
 
