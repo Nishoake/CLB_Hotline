@@ -33,7 +33,7 @@ export default function MyForm() {
       'id': 'firstname',
       'required': '',
       'minlength': '3',
-      'maxlength': '10',
+      'maxlength': '15',
       'cf-questions': "First off, do you have name or nickname you go by?",
       'cf-input-placeholder': "Eg. The Boy"
     },
@@ -91,7 +91,7 @@ export default function MyForm() {
         robotImage: 'https://scontent-lga3-1.cdninstagram.com/v/t51.2885-19/s150x150/91255903_2638479089705085_4943092648538800128_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_ohc=e7GMB5Nn-xcAX-m8jJ9&tp=1&oh=2952fbc498b55c3e2cee78ddb27d2026&oe=5FF42677',
         userInterfaceOptions: {
           robot: {
-            robotResponseTime: 1000,
+            // robotResponseTime: 1000,
           },
           // user: {
           //   showThinking: true,

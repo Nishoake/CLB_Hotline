@@ -11,6 +11,7 @@ app = express()
 
 // Middleware
 app.use(bodyParser.json())
+app.use(express.static('build'))
 
 // Database dependencies
 const Subscriber = require('./models/subscriber')
@@ -47,7 +48,7 @@ async function sendConfirmation(Twilio_Number, Recipient_Number, Recipient_Name)
     console.log('The C.L.B. Hotline is currently sending a text message')
 
     let response = await TwilioApi.messages.create({
-      body: `Hey Nishoake, ${Recipient_Name} (${Recipient_Number}) has subscribed to the C.L.B. Hotline🔥`,
+      body: `Hey Nishoake, ${Recipient_Name} (${Recipient_Number}) has subscribed to the C.L.B. Hotline`,
       from: Twilio_Number,
       to: '+16477874515'
     })
@@ -80,7 +81,7 @@ detect(artistID, clientResponse)
 
 // -------------------------------
 // Routes
-app.get('/', async (request, response) => {
+app.get('/api', async (request, response) => {
   console.log(`The client is requesting an update on the album drop`)
 
   response.json('CLB is not dropping when the ball drops')

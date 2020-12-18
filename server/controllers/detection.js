@@ -80,7 +80,7 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
   console.log('The CLB Hotline is currently in production mode')
 
   let response = await TwilioApi.messages.create({
-    body: `Hey ${Recipient_Name}! ${artistName} has just dropped ${albumName}🔥 Check it out at: ${albumLink} 🎧`,
+    body: `Hey ${Recipient_Name}! ${artistName} has just dropped ${albumName}! Check it out at: ${albumLink}`,
     from: Twilio_Number,
     to: Twilio_Recipient
   })
