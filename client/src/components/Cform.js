@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { ConversationalForm } from 'conversational-form'
 import newUser from '../services/newUser'
-import '../styles/styles.css'
+// import '../styles/main.css'
 
 export default function MyForm() {
   const ref = useRef();
