@@ -48,9 +48,9 @@ async function sendConfirmation(Twilio_Number, Recipient_Number, Recipient_Name)
     console.log('The C.L.B. Hotline is currently sending a text message')
 
     let response = await TwilioApi.messages.create({
-      body: `Hey Nishoake, ${Recipient_Name} (${Recipient_Number}) has subscribed to the C.L.B. Hotline`,
+      body: `Hey ${Recipient_Name}! Thank you for subscribing to the C.L.B. Hotline 🔥`,
       from: Twilio_Number,
-      to: '+16477874515'
+      to: Recipient_Number
     })
 
     console.log(response.sid)
@@ -112,11 +112,16 @@ app.post('/api', async (request, response) => {
   console.log(user)
   // Saving user
   let newUser = await user.save()
+  let confirmation = {
+    name: newUser.name,
+    number: newUser.number,
+    secret: Twilio_Number
+  }
 
   // Send confirmation text
   sendConfirmation(Twilio_Number, number, body.name)
   console.log('Text has been sent')
 
 
-  response.send(newUser)
+  response.send(confirmation)
 })
