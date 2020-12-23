@@ -12,7 +12,7 @@ export default function MyForm() {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_1',
-      'cf-questions': 'Yo what\'s going on? It\'s The Boy, aka Drake 🦉'
+      'cf-questions': 'Yo what\'s going on? It\'s The Boy, a.k.a. Drake 🦉'
     },
     {
       'tag': 'cf-robot-message',
@@ -27,6 +27,12 @@ export default function MyForm() {
       'cf-questions': 'But to make it up to you as a fan I will personally text you once I drop CLB 💽'
     },
     {
+      'tag': 'cf-robot-message',
+      'type': 'text',
+      'name': 'greeting_4',
+      'cf-questions': 'How does that sound?'
+    },
+    {
       'tag': 'input',
       'type': 'text',
       'name': 'firstname',
@@ -35,24 +41,27 @@ export default function MyForm() {
       'minlength': '3',
       'maxlength': '15',
       'cf-questions': "First off, do you have name or nickname you go by?",
-      'cf-input-placeholder': "Eg. The Boy"
+      'cf-input-placeholder': "Eg. The Boy",
+      'cf-error': '3 - 15 characters'
     },
     {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_4',
-      'cf-questions': "Dope name! Nice to meet you {firstname} 🤝"
+      'cf-questions': "Nice to meet you {firstname}! 🤝"
     },
     {
       'tag': 'input',
       'type': 'tel',
+      'pattern': "[0-9]{10}",
       'name': 'phoneNumber',
       'id': 'phoneNumber',
       'required': '',
       'minlength': '10',
       'maxlength': '10',
       'cf-questions': "So {firstname}, What is your phone number?",
-      'cf-input-placeholder': "10 digit format Eg. 4161234567"
+      'cf-input-placeholder': "Eg. 4161234567",
+      'cf-error': '10 digit number no dashes'
     },
     {
       'tag': 'cf-robot-message',
@@ -64,7 +73,7 @@ export default function MyForm() {
 
   useEffect(function mount() {
     
-
+    // Submitting the form
     async function submitCallback() {
       let newUserInfo = cf.getFormData(true)
       console.log("Formdata, obj:", newUserInfo)
@@ -75,17 +84,25 @@ export default function MyForm() {
       console.log(`Response: ${response}`)
 
       if (response === "Invalid number"){
-        cf.addRobotChatResponse("The number is invalid G")
+        cf.addRobotChatResponse("This is an invalid Canadian mobile number G 😂")
+        cf.addRobotChatResponse("KMT ... I took a break from CLB, now it's back to that ✌🏼")
       } else if (response === "Non-unique number"){
-        cf.addRobotChatResponse("The number has already been added")
+        cf.addRobotChatResponse("You must love talking with me 😂")
+        cf.addRobotChatResponse("Since you've already subscribed to the CLB Hotline ✍🏼")
+        cf.addRobotChatResponse("I gotta get back to CLB, but until next time ✌🏼")
       } else{
-        cf.addRobotChatResponse("Woi Oi! You've been subscribed! I'll get one of my associates to text you when CLB drops.")
+        cf.addRobotChatResponse("Woi Oi! You've been subscribed!💘")
+        cf.addRobotChatResponse("My associate will send out a confirmation text from +1-647-372-5371 shortly 📱")
+        cf.addRobotChatResponse("Also expect a text from the same number once CLB drops 🔥")
+        cf.addRobotChatResponse("In the meantime there will be notifications for other album drops I'm excited for 🎶")
+        cf.addRobotChatResponse("Artists like Playboi Carti & Mariah the Scientist 🔥")
+        cf.addRobotChatResponse("I gotta get back to CLB, but until next time Take Care✌🏼")
       }
     }
 
     let cf = ConversationalForm.startTheConversation({
       options: {
-        theme: 'blue',
+        theme: 'dark',
         submitCallback: submitCallback,
         userImage: 'https://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_400x400.png',
         robotImage: 'https://scontent-lga3-1.cdninstagram.com/v/t51.2885-19/s150x150/91255903_2638479089705085_4943092648538800128_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_ohc=e7GMB5Nn-xcAX-m8jJ9&tp=1&oh=2952fbc498b55c3e2cee78ddb27d2026&oe=5FF42677',

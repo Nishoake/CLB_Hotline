@@ -18,7 +18,7 @@ html {
   grid-template-areas: 
     "title title title"
     ". hero ."
-    ". forza ."
+    ". nocta ."
     ". logo ."
     ". icon .";
 }
@@ -40,12 +40,12 @@ html {
   grid-area: hero;
 }
 
-.forza {
+.nocta {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  grid-area: forza;
+  grid-area: nocta;
 }
 
 .logo {
@@ -65,8 +65,8 @@ html {
 }
 
 .conversational-form {
-  grid-area: forza;
-  width: 75%;
+  grid-area: nocta;
+  width: 90%;
   height: 43%;
   border: 1px solid #ddd;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
