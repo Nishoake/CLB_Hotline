@@ -5,7 +5,8 @@
   border: 0px;
 } */
 html {
-  margin: 0px
+  margin: 0px;
+   padding: env(safe-area-inset);
 }
 .parent {
   background: pink;
@@ -30,6 +31,7 @@ html {
   align-items: center;
   grid-area: title;
   width: 100%;
+  font-family: Helvetica;
 }
 
 .hero {

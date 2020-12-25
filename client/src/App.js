@@ -14,15 +14,15 @@ function App() {
       <div className='title'>
         <Header title='C.L.B. HOTLINE' />
       </div>
-      <div className='hero'>
-        <Subheading title='A messaging service that will notify Drake fans once Certified Lover Boy drops 🏹'/>
+      <div className="hero">
+        <Subheading title='A messaging service that will notify you once Certified Lover Boy drops 🏹'/>
+        {/* <Subheading title="In the meantime there will be notifications for Playboi Carti' s Whole Lotta Red 💉"/> */}
       </div>
       <div className='nocta'>
         <CForm />
       </div>
       <div className="icon">
         <Subheading title='Designed and Built by Nishoake 👨🏾‍💻🔨' />
-        {/* <Header title='C.L.B. HOTLINE' /> */}
       </div>
     </div>
   )

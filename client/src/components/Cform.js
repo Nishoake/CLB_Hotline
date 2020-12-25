@@ -26,12 +26,23 @@ export default function MyForm() {
       'name': 'greeting_3',
       'cf-questions': 'But to make it up to you as a fan I will personally text you once I drop CLB 💽'
     },
-    {
-      'tag': 'cf-robot-message',
-      'type': 'text',
-      'name': 'greeting_4',
-      'cf-questions': 'How does that sound?'
-    },
+    // {
+    //   'tag': 'select',
+    //   'name': 'continue',
+    //   'cf-questions': 'How does that sound?',
+    //   'children': [
+    //     {
+    //       'tag': 'option',
+    //       'cf-label': 'Sounds good!',
+    //       'value': 'yes'
+    //     },
+    //     {
+    //       'tag': 'option',
+    //       'cf-label': 'No thank you',
+    //       'value': 'no'
+    //     }
+    //   ]
+    // },
     {
       'tag': 'input',
       'type': 'text',
@@ -42,13 +53,15 @@ export default function MyForm() {
       'maxlength': '15',
       'cf-questions': "First off, do you have name or nickname you go by?",
       'cf-input-placeholder': "Eg. The Boy",
-      'cf-error': '3 - 15 characters'
+      'cf-error': '3 - 15 characters',
+      // 'cf-conditional-continue': 'yes'
     },
     {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_4',
-      'cf-questions': "Nice to meet you {firstname}! 🤝"
+      'cf-questions': "Nice to meet you {firstname}! 🤝",
+      'cf-conditional-continue': 'yes'
     },
     {
       'tag': 'input',
@@ -69,6 +82,12 @@ export default function MyForm() {
       'name': 'adding_Contact_Info_1',
       'cf-questions': "Alright {firstname} give me a minute to add you to my contacts ⏳"
     },
+    // {
+    //   'tag': 'cf-robot-message',
+    //   'name': 'ending',
+    //   'cf-conditional-continue': 'no',
+    //   'cf-questions': 'No biggie ✌🏼'
+    // },
   ]
 
   useEffect(function mount() {
@@ -76,12 +95,8 @@ export default function MyForm() {
     // Submitting the form
     async function submitCallback() {
       let newUserInfo = cf.getFormData(true)
-      console.log("Formdata, obj:", newUserInfo)
-      console.log("Firstname:", newUserInfo.firstname)
-      console.log("phone-number:", newUserInfo.phoneNumber)
 
       let response = await newUser.addUser(newUserInfo)
-      console.log(`Response: ${response}`)
 
       if (response === "Invalid number"){
         cf.addRobotChatResponse("This is an invalid Canadian mobile number G 😂")
@@ -92,10 +107,10 @@ export default function MyForm() {
         cf.addRobotChatResponse("I gotta get back to CLB, but until next time ✌🏼")
       } else{
         cf.addRobotChatResponse("Woi Oi! You've been subscribed!💘")
-        cf.addRobotChatResponse("My associate will send out a confirmation text from +1-647-372-5371 shortly 📱")
-        cf.addRobotChatResponse("Also expect a text from the same number once CLB drops 🔥")
-        cf.addRobotChatResponse("In the meantime there will be notifications for other album drops I'm excited for 🎶")
-        cf.addRobotChatResponse("Artists like Playboi Carti & Mariah the Scientist 🔥")
+        cf.addRobotChatResponse(`My associate will send out a confirmation text from ${response.secret} shortly 📱`)
+        // cf.addRobotChatResponse("Also expect a text from the same number once CLB drops 🔥")
+        // cf.addRobotChatResponse("In the meantime there will be notifications for other album drops I'm excited for 🎶")
+        // cf.addRobotChatResponse("Artists like Playboi Carti & Mariah the Scientist 🔥")
         cf.addRobotChatResponse("I gotta get back to CLB, but until next time Take Care✌🏼")
       }
     }
