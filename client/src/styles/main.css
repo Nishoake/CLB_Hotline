@@ -6,7 +6,8 @@
 } */
 html {
   margin: 0px;
-   padding: env(safe-area-inset);
+  padding: env(safe-area-inset);
+  background-color: pink;
 }
 .parent {
   background: pink;
@@ -21,7 +22,7 @@ html {
     ". hero ."
     ". nocta ."
     ". logo ."
-    ". icon .";
+    "footer footer footer";
 }
 
 .title {
@@ -58,12 +59,13 @@ html {
   grid-area: logo;
 }
 
-.icon {
+.footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  grid-area: icon;
+  grid-area: footer;
+  background-color: black;
 }
 
 .conversational-form {

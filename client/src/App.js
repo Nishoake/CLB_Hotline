@@ -21,7 +21,7 @@ function App() {
       <div className='nocta'>
         <CForm />
       </div>
-      <div className="icon">
+      <div className="footer">
         <Subheading title='Designed and Built by Nishoake 👨🏾‍💻🔨' />
       </div>
     </div>
