@@ -1,46 +1,41 @@
-/* * {
-  margin: 0px;
-  padding: 0px; 
-  outline: none;
-  border: 0px;
-} */
+
 html {
   margin: 0px;
   padding: env(safe-area-inset);
   background-color: pink;
 }
+
 .parent {
-  background: pink;
   color: white;
   font-family: 'Alata', sans-serif;
   display: grid;
   grid-template-columns: 50px 1fr 50px;
-  grid-template-rows: auto auto 500px auto auto;
-  gap: 50px 15px;
+  grid-template-rows: 100px 300px 700px 1000px auto;
+  gap: 25px 15px;
   grid-template-areas: 
-    "title title title"
-    ". hero ."
+    "logo logo logo"
+    ". pitch ."
     ". nocta ."
-    ". logo ."
+    ". drop ."
     "footer footer footer";
 }
 
-.title {
+.logo {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  grid-area: title;
+  grid-area: logo;
   width: 100%;
   font-family: Helvetica;
 }
 
-.hero {
+.pitch {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
-  grid-area: hero;
+  grid-area: pitch;
 }
 
 .nocta {
@@ -51,12 +46,12 @@ html {
   grid-area: nocta;
 }
 
-.logo {
+.drop {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  grid-area: logo;
+  grid-area: drop;
 }
 
 .footer {
@@ -80,11 +75,8 @@ html {
   visibility: visible;
 }
 
-/* .test {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  grid-area: test;
-  visibility: hidden;
-} */
+p {
+  text-align: auto;
+  text-justify: inter-character;
+  font-size: 15px;
+}
