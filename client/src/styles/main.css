@@ -10,8 +10,8 @@ html {
   font-family: 'Alata', sans-serif;
   display: grid;
   grid-template-columns: 50px 1fr 50px;
-  grid-template-rows: 100px 300px 700px 1000px auto;
-  gap: 25px 15px;
+  grid-template-rows: 100px 300px 700px 1000px auto auto;
+  gap: 0px 15px;
   grid-template-areas: 
     "logo logo logo"
     ". pitch ."
@@ -33,7 +33,7 @@ html {
 .pitch {
   display: flex;
   flex-direction: column;
-  justify-content: top;
+  justify-content: flex-start;
   align-items: center;
   grid-area: pitch;
 }
@@ -60,7 +60,14 @@ html {
   justify-content: center;
   align-items: center;
   grid-area: footer;
-  background-color: black;
+  background-color: #282830;
+}
+
+.footerIcon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .conversational-form {
@@ -79,4 +86,17 @@ p {
   text-align: auto;
   text-justify: inter-character;
   font-size: 15px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+}
+
+.icon:hover {
+  color: pink;
 }
