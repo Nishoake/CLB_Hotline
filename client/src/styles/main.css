@@ -10,7 +10,8 @@ html {
   font-family: 'Alata', sans-serif;
   display: grid;
   grid-template-columns: 50px 1fr 50px;
-  grid-template-rows: 100px 300px 700px 1000px auto auto;
+  grid-template-rows: 100px 300px 700px 1000px auto;
+  /* grid-template-rows: auto auto 1000px auto auto; */
   gap: 0px 15px;
   grid-template-areas: 
     "logo logo logo"
@@ -72,9 +73,12 @@ html {
 
 .conversational-form {
   grid-area: nocta;
-  width: 90%;
-  height: 43%;
-  border: 1px solid #ddd;
+  /* width: 90%; */
+  /* height: 43%; */
+  width: 50%;
+  height: 100vh;
+  margin: 50px;
+  border: 1px solid pink;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border-radius: 20px;
   overflow: auto;
