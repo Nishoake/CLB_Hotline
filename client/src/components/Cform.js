@@ -12,7 +12,7 @@ export default function MyForm() {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_1',
-      'cf-questions': 'Yo what\'s going on? It\'s The Boy, a.k.a. Drake 🦉'
+      'cf-questions': 'Yo what\'s going on? It\'s The Boy, a.k.a. Drake 🌎'
     },
     {
       'tag': 'cf-robot-message',
@@ -120,7 +120,7 @@ export default function MyForm() {
         theme: 'dark',
         submitCallback: submitCallback,
         userImage: 'https://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_400x400.png',
-        robotImage: 'https://scontent-lga3-1.cdninstagram.com/v/t51.2885-19/s150x150/91255903_2638479089705085_4943092648538800128_n.jpg?_nc_ht=scontent-lga3-1.cdninstagram.com&_nc_ohc=e7GMB5Nn-xcAX-m8jJ9&tp=1&oh=2952fbc498b55c3e2cee78ddb27d2026&oe=5FF42677',
+        robotImage: 'https://i.redd.it/moigifebc3341.jpg',
         userInterfaceOptions: {
           robot: {
             // robotResponseTime: 1000,

@@ -4,7 +4,7 @@ import '../styles/main.css'
 const Footer = ({ icon, link, label }) => {
   return (
     <div className='icon'>
-      <i class={icon}><a href={link}></a></i>
+      <a href={link}><i class={icon}></i></a>
       <p>{label}</p>
     </div>
   )

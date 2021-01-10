@@ -17,9 +17,9 @@ function App() {
       </div>
       <div className="pitch">
         <Question question="Growing impatient for the release of Drake's Certified Lover Boy?"/>
-        <Blurb blurb='C.L.B. Hotline is an app built to solve this very problem. The app will send subscribers a SMS text to their mobile number once the album is available on streaming platforms. Currently only Canadian and U.S. mobile numbers are supported 🇨🇦 & 🇺🇸' />
-        <Blurb blurb='If you are still on the fence like Mr. Feeny please check how it all works by cliking here.' />
-        <Blurb blurb='Otherwise feel free to subscribe with the interactice onboarding procees below 👇🏾' />
+        <Blurb blurb='C.L.B. Hotline is an app built to solve this very problem. The app will send subscribers a SMS text to their phone once the album is available on streaming platforms. Currently only Canadian and U.S. mobile numbers are supported 🇨🇦 & 🇺🇸' />
+        <Blurb blurb='If you are still on the fence like Mr. Feeny please check how it all works by cliking here 💡' />
+        <Blurb blurb='Otherwise feel free to subscribe with the interactive onboarding procees below 👇🏾' />
       </div>
       <div className='nocta'>
         <CForm />
@@ -27,9 +27,9 @@ function App() {
       <div className="footer">
         <Blurb blurb='Designed and Built by Nishoake 👨🏾‍💻' />
         <div className="footerIcon">
-          <Footer icon='fab fa-spotify' label='Spotify' link='' />
+          <Footer icon='fab fa-spotify' label='Spotify' link='https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4' />
           <Footer icon='fab fa-github' label='GitHub' link='https://github.com/Nishoake/CLB_Hotline' />
-          <Footer icon='fab fa-linkedin-in' label='LinkedIn' link='' />
+          <Footer icon='fab fa-linkedin-in' label='LinkedIn' link='https://www.linkedin.com/in/nishoake-sribavan-421240139/' />
         </div>
       </div>
     </div>

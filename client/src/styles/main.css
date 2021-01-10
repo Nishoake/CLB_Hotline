@@ -88,6 +88,10 @@ p {
   font-size: 15px;
 }
 
+.contrast {
+  color: #ff6666;
+}
+
 .icon {
   display: flex;
   flex-direction: column;
@@ -100,3 +104,7 @@ p {
 .icon:hover {
   color: pink;
 }
+
+a { 
+  color: inherit; 
+} 
