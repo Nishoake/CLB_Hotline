@@ -89,29 +89,32 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
     console.log(response.sid)
   } catch (error) {
       console.error(`Not a valid North American number => ${error}`)
-      return null
   }
 }
 
 // Sending text messages to all subscribers
 async function hotlineBling(albumInfo) {
-  // Destructuring Album object
-  const artistName = albumInfo.artistName
-  const albumName = albumInfo.albumName
-  const albumLink = albumInfo.link
+  try{
+    // Destructuring Album object
+    const artistName = albumInfo.artistName
+    const albumName = albumInfo.albumName
+    const albumLink = albumInfo.link
 
-  // Array of subscribers
-  const subscribers = await Subscriber.find()
-  console.log('Start!')
+    // Array of subscribers
+    const subscribers = await Subscriber.find()
+    console.log('Start!')
 
-  for (let i = 0; i < subscribers.length; i++) {
-    const name = subscribers[i].name
-    const number = subscribers[i].number
+    for (let i = 0; i < subscribers.length; i++) {
+      const name = subscribers[i].name
+      const number = subscribers[i].number
 
-    await sendText(Twilio_Number, number, name, artistName, albumName, albumLink)
+      await sendText(Twilio_Number, number, name, artistName, albumName, albumLink)
+    }
+
+    console.log('Done!')
+  } catch{
+      console.error(`Something went wrong sending texts => ${error}`)
   }
-
-  console.log('Done!')
 }
 
 // Detection Algorithm
