@@ -79,13 +79,18 @@ function updateClientRespone(clientResponse, newName, newImage, newLink) {
 async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistName, albumName, albumLink) {
   console.log('The CLB Hotline is currently in production mode')
 
-  let response = await TwilioApi.messages.create({
-    body: `Hey ${Recipient_Name}! ${artistName} has just dropped ${albumName}! Check it out at: ${albumLink}`,
-    from: Twilio_Number,
-    to: Twilio_Recipient
-  })
+  try{
+    let response = await TwilioApi.messages.create({
+      body: `Hey ${Recipient_Name}! ${artistName} has just dropped ${albumName}! Check it out at: ${albumLink}`,
+      from: Twilio_Number,
+      to: Twilio_Recipient
+    })
 
-  console.log(response.sid)
+    console.log(response.sid)
+  } catch (error) {
+      console.error(`Not a valid North American number => ${error}`)
+      return null
+  }
 }
 
 // Sending text messages to all subscribers

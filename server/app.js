@@ -32,12 +32,13 @@ const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
 async function lookup(number){
   try{
     // Validate number using Twilio Lookup
-    let result = await TwilioApi.lookups.phoneNumbers(number).fetch({ countryCode: 'CA' })
+    let result = await TwilioApi.lookups.phoneNumbers(number).fetch()
 
     // Returning the number in format expected by database
+    console.log(`lookup: ${result.phoneNumber}`)
     return result.phoneNumber
   } catch(error){
-      console.error(error)
+      console.error(`Not a valid North American number => ${error}`)
       return null
   }
 }
@@ -56,7 +57,7 @@ async function sendConfirmation(Twilio_Number, Recipient_Number, Recipient_Name)
     console.log(response.sid)
 
   } catch (error) {
-      console.error(error)
+    console.error(`Not a valid mobile number => ${error}`)
   }
 }
 

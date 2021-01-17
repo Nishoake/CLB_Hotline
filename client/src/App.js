@@ -1,9 +1,10 @@
 import React from 'react'
 import CForm from './components/CForm'
-import Header from './components/Header'
+// import Header from './components/Header'
 import Question from './components/Question'
 import Blurb from './components/Blurb'
 import Footer from './components/Footer'
+import Logo from './components/Logo'
 import './styles/main.css'
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
     // </div>
     <div className='parent'>
       <div className='logo'>
-        <Header title='C.L.B. HOTLINE' />
+        {/* <Header title='C.L.B. HOTLINE' /> */}
+        <Logo />
       </div>
       <div className="pitch">
         <Question question="Growing impatient for the release of Drake's Certified Lover Boy?"/>
@@ -22,7 +24,10 @@ function App() {
         <Blurb blurb='Otherwise feel free to subscribe with the interactive onboarding procees below 👇🏾' />
       </div>
       <div className='nocta'>
-        <CForm />
+        <div className='experiment'>
+          <CForm />
+          <CForm />
+        </div>
       </div>
       <div className="footer">
         <Blurb blurb='Designed and Built by Nishoake 👨🏾‍💻' />

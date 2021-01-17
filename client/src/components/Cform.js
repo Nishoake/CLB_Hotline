@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { ConversationalForm } from 'conversational-form'
 import newUser from '../services/newUser'
-// import '../styles/main.css'
+import '../styles/main.css'
 
 export default function MyForm() {
   const ref = useRef();
@@ -99,7 +99,7 @@ export default function MyForm() {
       let response = await newUser.addUser(newUserInfo)
 
       if (response === "Invalid number"){
-        cf.addRobotChatResponse("This is an invalid Canadian mobile number G 😂")
+        cf.addRobotChatResponse("This is an invalid Canadian / American mobile number G 😂")
         cf.addRobotChatResponse("KMT ... I took a break from CLB, now it's back to that ✌🏼")
       } else if (response === "Non-unique number"){
         cf.addRobotChatResponse("You must love talking with me 😂")
@@ -144,7 +144,7 @@ export default function MyForm() {
 
 
   return (
-    <div>
+    <div className='experiment'>
       <div ref={ref}/>
     </div>
   )
