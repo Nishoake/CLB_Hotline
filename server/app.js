@@ -150,11 +150,11 @@ app.post('/bling', async (request, response) => {
 
       twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
 
-    } else {
-      twiml.message(`You like to slide on a late night 🛷`)
+    } else if (!user){
+      twiml.message(`Signup for the C.L.B. Hotline at: https://clb-hotline.herokuapp.com/`)
     }
   } else{
-    twiml.message(`Signup for the C.L.B. Hotline at: https://clb-hotline.herokuapp.com/`)
+    twiml.message(`You like to slide on a late night 🛷`)
   }
 
   response.writeHead(200, { 'Content-Type': 'text/xml' })
