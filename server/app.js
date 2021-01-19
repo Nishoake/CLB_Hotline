@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const Twilio = require('twilio')
+const MessagingResponse = require('twilio').twiml.MessagingResponse
 const detectModule = require('./controllers/detection')
 const detect = detectModule.detect
 
@@ -11,6 +12,7 @@ app = express()
 
 // Middleware
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static('build'))
 
 // Database dependencies
@@ -125,4 +127,33 @@ app.post('/api', async (request, response) => {
 
 
   response.send(confirmation)
+})
+
+app.post('/bling', async (request, response) => {
+  // Intializing Twilio Messaging Response
+  const twiml = new MessagingResponse()
+  console.log(`twiml: ${JSON.stringify(twiml)}`)
+
+  // save the From # into constant, sender
+  const sender = request.body.From
+  console.log(`sender: ${sender}`)
+
+  // Query database for number
+  let user = await Subscriber.findOne({ number: sender })
+  console.log(`user: ${JSON.stringify(user)}`)
+
+  if(user){
+    if (request.body.Body === 'TAKECARE'){
+      let result = await Subscriber.findByIdAndDelete(user._id)
+
+      console.log(`result: ${result}`)
+
+      twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
+    } else {
+      twiml.message(`I'm outside in an AMG 🚘`)
+    }
+  }
+
+  response.writeHead(200, { 'Content-Type': 'text/xml' })
+  response.end(twiml.toString())
 })
