@@ -147,10 +147,10 @@ app.post('/bling', async (request, response) => {
   // }
 
   if(user){
-    if (request.body.Body === 'TAKECARE'){
+    if (request.body.Body == 'TAKECARE'){
       // let result = await Subscriber.findByIdAndDelete(user._id)
 
-      console.log(`result: ${result}`)
+      // console.log(`result: ${result}`)
       twiml.message(`Last Name Ever; First Name Greatest ⭐️`)
 
       // twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
