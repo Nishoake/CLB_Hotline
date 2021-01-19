@@ -142,24 +142,20 @@ app.post('/bling', async (request, response) => {
   let user = await Subscriber.findOne({ number: sender })
   console.log(`user ID: ${user._id}`)
 
-  // if(user){
-  //   console.log('user has been found in the database')
-  // }
-
   if(user){
-    if (request.body.Body === 'TAKECARE'){
+    if (request.body.Body === 'TAKECARE' || request.body.Body === 'TAKECARE '){
       let result = await Subscriber.findByIdAndDelete(user._id)
 
       console.log(`result: ${result}`)
-      twiml.message(`Last Name Ever; First Name Greatest ⭐️`)
 
-      // twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
+      twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
+
     } else {
-      twiml.message(`I'm outside in an AMG 🚘`)
+      twiml.message(`You like to slide on a late night 🛷`)
     }
   }
 
-  // twiml.message(`I'm outside in an AMG 🚘`)
+  twiml.message(`Signup for the C.L.B. Hotline at: https://clb-hotline.herokuapp.com/`)
 
   response.writeHead(200, { 'Content-Type': 'text/xml' })
   response.end(twiml.toString())
