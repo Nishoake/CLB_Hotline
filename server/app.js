@@ -51,7 +51,7 @@ async function sendConfirmation(Twilio_Number, Recipient_Number, Recipient_Name)
     console.log('The C.L.B. Hotline is currently sending a text message')
 
     let response = await TwilioApi.messages.create({
-      body: `Hey ${Recipient_Name}! Thank you for subscribing to the C.L.B. Hotline 🔥`,
+      body: `Hey ${Recipient_Name}! You are now subscribed to the C.L.B. Hotline! If this is a mistake, or you change your mind just text 'TAKECARE' to unsubscribe`,
       from: Twilio_Number,
       to: Recipient_Number
     })
@@ -145,7 +145,7 @@ app.post('/bling', async (request, response) => {
     "I'm outside in an AMG 🚘",
     "You like to slide on a late night 🛷`",
     "Last name Ever, First name Greatest ⭐️",
-    "I know when that Hotline Bling ... That can only mean one thing!",
+    "I know when that Hotline Bling ... That can only mean one thing☎️",
     "Line Blowing Up 💣",
     "I could dance like Michael Jack-Son 🕺🏽"
   ]

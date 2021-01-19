@@ -24,7 +24,7 @@ export default function MyForm() {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_3',
-      'cf-questions': 'But to make it up to you as a fan I will personally text you once I drop CLB 💽'
+      'cf-questions': 'But to make it up to you as a fan, I will personally text you once I drop CLB 💽'
     },
     // {
     //   'tag': 'select',
@@ -72,15 +72,15 @@ export default function MyForm() {
       'required': '',
       'minlength': '10',
       'maxlength': '10',
-      'cf-questions': "So {firstname}, What is your phone number?",
-      'cf-input-placeholder': "Eg. 4161234567",
+      'cf-questions': "So {firstname}, what is your cell phone number?",
+      'cf-input-placeholder': "10 digit Eg. 4161234567",
       'cf-error': '10 digit number no dashes'
     },
     {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'adding_Contact_Info_1',
-      'cf-questions': "Alright {firstname} give me a minute to add you to my contacts ⏳"
+      'cf-questions': "Alright {firstname}! Give me a minute to verify and add you to my contacts ⏳"
     },
     // {
     //   'tag': 'cf-robot-message',
@@ -99,19 +99,20 @@ export default function MyForm() {
       let response = await newUser.addUser(newUserInfo)
 
       if (response === "Invalid number"){
-        cf.addRobotChatResponse("This is an invalid Canadian / American mobile number G 😂")
-        cf.addRobotChatResponse("KMT ... I took a break from CLB, now it's back to that ✌🏼")
+        cf.addRobotChatResponse("This is an invalid Canadian 🇨🇦 / American 🇺🇸 cell phone number {firstname} 😂")
+        cf.addRobotChatResponse("KMT ... I took a break from CLB, now it's back to that, {firstname} ✌🏼")
       } else if (response === "Non-unique number"){
-        cf.addRobotChatResponse("You must love talking with me 😂")
-        cf.addRobotChatResponse("Since you've already subscribed to the CLB Hotline ✍🏼")
-        cf.addRobotChatResponse("I gotta get back to CLB, but until next time ✌🏼")
+        cf.addRobotChatResponse("You must love talking with me {firstname} 😂")
+        cf.addRobotChatResponse("You've already subscribed to the CLB Hotline ✍🏼")
+        cf.addRobotChatResponse("I gotta get back to CLB, but until next time {firstname} ✌🏼")
       } else{
-        cf.addRobotChatResponse("Woi Oi! You've been subscribed!💘")
-        cf.addRobotChatResponse(`My associate will send out a confirmation text from ${response.secret} shortly 📱`)
+        cf.addRobotChatResponse("Woi Oi! You've been subscribed! 💘")
+        cf.addRobotChatResponse(`I'll send out a confirmation text from ${response.secret} shortly 📱`)
+        cf.addRobotChatResponse(`If you change your mind just text 'TAKECARE' to ${response.secret} to unsubscribe`)
         // cf.addRobotChatResponse("Also expect a text from the same number once CLB drops 🔥")
         // cf.addRobotChatResponse("In the meantime there will be notifications for other album drops I'm excited for 🎶")
         // cf.addRobotChatResponse("Artists like Playboi Carti & Mariah the Scientist 🔥")
-        cf.addRobotChatResponse("I gotta get back to CLB, but until next time Take Care✌🏼")
+        cf.addRobotChatResponse("I gotta get back to CLB, but until next time {firstname} ✌🏼")
       }
     }
 
