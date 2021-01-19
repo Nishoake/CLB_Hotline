@@ -64,7 +64,7 @@ async function sendConfirmation(Twilio_Number, Recipient_Number, Recipient_Name)
 }
 
 // Randomize Function
-async function randomize(max){
+function randomize(max){
   max = Math.floor(max)
   return Math.floor(Math.random() * max)
 }
@@ -141,7 +141,7 @@ app.post('/bling', async (request, response) => {
   const twiml = new MessagingResponse()
 
   // Array of lyric responses
-  const bars = [
+  const lyrics = [
     "I'm outside in an AMG 🚘",
     "You like to slide on a late night 🛷`",
     "Last name Ever, First name Greatest ⭐️",
@@ -166,9 +166,9 @@ app.post('/bling', async (request, response) => {
 
         twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
       } else {
-        let randomNumber = randomize(bars.length - 1)
+        let randomNumber = randomize(lyrics.length - 1)
 
-        twiml.message(`${bars[randomNumber]}`)
+        twiml.message(`${lyrics[randomNumber]}`)
       }
     } else {
       twiml.message(`Signup for the C.L.B. Hotline at: https://clb-hotline.herokuapp.com/`)
