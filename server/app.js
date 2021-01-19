@@ -132,28 +132,30 @@ app.post('/api', async (request, response) => {
 app.post('/bling', async (request, response) => {
   // Intializing Twilio Messaging Response
   const twiml = new MessagingResponse()
-  console.log(`twiml: ${JSON.stringify(twiml)}`)
+  // console.log(`twiml: ${JSON.stringify(twiml)}`)
 
-  // save the From # into constant, sender
-  const sender = request.body.From
-  console.log(`sender: ${sender}`)
+  // // save the From # into constant, sender
+  // const sender = request.body.From
+  // console.log(`sender: ${sender}`)
 
-  // Query database for number
-  let user = await Subscriber.findOne({ number: sender })
-  console.log(`user: ${JSON.stringify(user)}`)
+  // // Query database for number
+  // let user = await Subscriber.findOne({ number: sender })
+  // console.log(`user: ${JSON.stringify(user)}`)
 
-  if(user){
-    if (request.body.Body === 'TAKECARE'){
-      let result = await Subscriber.findByIdAndDelete(user._id)
+  // if(user){
+  //   if (request.body.Body === 'TAKECARE'){
+  //     let result = await Subscriber.findByIdAndDelete(user._id)
 
-      console.log(`result: ${result}`)
+  //     console.log(`result: ${result}`)
 
-      twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
-    } else {
-      twiml.message(`I'm outside in an AMG 🚘`)
-    }
-  }
+  //     twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
+  //   } else {
+  //     twiml.message(`I'm outside in an AMG 🚘`)
+  //   }
+  // }
 
+  twiml.message(`I'm outside in an AMG 🚘`)
+  
   response.writeHead(200, { 'Content-Type': 'text/xml' })
   response.end(twiml.toString())
 })
