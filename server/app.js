@@ -134,8 +134,9 @@ app.post('/bling', async (request, response) => {
   // Intializing Twilio Messaging Response
   const twiml = new MessagingResponse()
 
-  // save the From # into constant, 'sender'
+  // save the From # and text body into constants, 'sender' and 'text' respectively
   const sender = request.body.From
+  const text = request.body.Body
 
   try {
     // Querying database for a matching number
@@ -145,7 +146,7 @@ app.post('/bling', async (request, response) => {
     if (user) {
       // Added second condition to cover fringe case of user using the autocomplete feature
       // Which would result in an additional space
-      if (request.body.Body === 'TAKECARE' || request.body.Body === 'TAKECARE ') {
+      if ('TAKECARE'.localeCompare(text, undefined, { sensitivity: 'accent' }) === 0 || 'TAKECARE '.localeCompare(text, undefined, { sensitivity: 'accent' }) === 0) {
         await Subscriber.findByIdAndDelete(user._id)
 
         twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
