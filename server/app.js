@@ -147,7 +147,7 @@ app.post('/bling', async (request, response) => {
   // }
 
   if(user){
-    if (request.body.Body == 'TAKECARE'){
+    if (request.body.Body === 'TAKECARE'){
       // let result = await Subscriber.findByIdAndDelete(user._id)
 
       // console.log(`result: ${result}`)
