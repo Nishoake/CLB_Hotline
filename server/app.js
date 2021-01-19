@@ -63,6 +63,12 @@ async function sendConfirmation(Twilio_Number, Recipient_Number, Recipient_Name)
   }
 }
 
+// Randomize Function
+async function randomize(max){
+  max = Math.floor(max)
+  return Math.floor(Math.random() * max)
+}
+
 // Intialize port
 const port = process.env.PORT || 3005
 app.listen(port, () => {
