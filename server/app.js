@@ -134,9 +134,9 @@ app.post('/bling', async (request, response) => {
   const twiml = new MessagingResponse()
   // console.log(`twiml: ${JSON.stringify(twiml)}`)
 
-  // // save the From # into constant, sender
-  // const sender = request.body.From
-  // console.log(`sender: ${sender}`)
+  // save the From # into constant, sender
+  const sender = request.body.From
+  console.log(`sender: ${sender}`)
 
   // // Query database for number
   // let user = await Subscriber.findOne({ number: sender })
@@ -155,7 +155,7 @@ app.post('/bling', async (request, response) => {
   // }
 
   twiml.message(`I'm outside in an AMG 🚘`)
-  
+
   response.writeHead(200, { 'Content-Type': 'text/xml' })
   response.end(twiml.toString())
 })
