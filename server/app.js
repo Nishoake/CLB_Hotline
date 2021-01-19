@@ -140,7 +140,7 @@ app.post('/bling', async (request, response) => {
 
   // Query database for number
   let user = await Subscriber.findOne({ number: sender })
-  console.log(`user ID: ${user._id}`)
+  // console.log(`user ID: ${user._id}`)
 
   if(user){
     if (request.body.Body === 'TAKECARE' || request.body.Body === 'TAKECARE '){
