@@ -138,9 +138,13 @@ app.post('/bling', async (request, response) => {
   const sender = request.body.From
   console.log(`sender: ${sender}`)
 
-  // // Query database for number
-  // let user = await Subscriber.findOne({ number: sender })
-  // console.log(`user: ${JSON.stringify(user)}`)
+  // Query database for number
+  let user = await Subscriber.findOne({ number: sender })
+  console.log(`user: ${user}`)
+
+  if(user){
+    console.log('user has been found in the database')
+  }
 
   // if(user){
   //   if (request.body.Body === 'TAKECARE'){
