@@ -140,25 +140,26 @@ app.post('/bling', async (request, response) => {
 
   // Query database for number
   let user = await Subscriber.findOne({ number: sender })
-  console.log(`user: ${user}`)
-
-  if(user){
-    console.log('user has been found in the database')
-  }
+  console.log(`user ID: ${user._id}`)
 
   // if(user){
-  //   if (request.body.Body === 'TAKECARE'){
-  //     let result = await Subscriber.findByIdAndDelete(user._id)
-
-  //     console.log(`result: ${result}`)
-
-  //     twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
-  //   } else {
-  //     twiml.message(`I'm outside in an AMG 🚘`)
-  //   }
+  //   console.log('user has been found in the database')
   // }
 
-  twiml.message(`I'm outside in an AMG 🚘`)
+  if(user){
+    if (request.body.Body === 'TAKECARE'){
+      // let result = await Subscriber.findByIdAndDelete(user._id)
+
+      console.log(`result: ${result}`)
+      twiml.message(`Last Name Ever; First Name Greatest ⭐️`)
+
+      // twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
+    } else {
+      twiml.message(`I'm outside in an AMG 🚘`)
+    }
+  }
+
+  // twiml.message(`I'm outside in an AMG 🚘`)
 
   response.writeHead(200, { 'Content-Type': 'text/xml' })
   response.end(twiml.toString())
