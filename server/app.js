@@ -140,6 +140,15 @@ app.post('/bling', async (request, response) => {
   // Intializing Twilio Messaging Response
   const twiml = new MessagingResponse()
 
+  // Array of lyric responses
+  const bars = [
+    "I'm outside in an AMG 🚘",
+    "You like to slide on a late night 🛷`",
+    "Last name Ever, First name Greatest ⭐️",
+    "I know when that Hotline Bling ... That can only mean one thing!",
+    "Line Blowing Up 💣",
+    "I could dance like Michael Jack-Son 🕺🏽"
+  ]
   // save the From # and text body into constants, 'sender' and 'text' respectively
   const sender = request.body.From
   const text = request.body.Body
@@ -157,7 +166,9 @@ app.post('/bling', async (request, response) => {
 
         twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
       } else {
-        twiml.message(`You like to slide on a late night 🛷`)
+        let randomNumber = randomize(bars.length - 1)
+
+        twiml.message(`${bars[randomNumber]}`)
       }
     } else {
       twiml.message(`Signup for the C.L.B. Hotline at: https://clb-hotline.herokuapp.com/`)
