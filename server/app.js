@@ -153,9 +153,9 @@ app.post('/bling', async (request, response) => {
     } else {
       twiml.message(`You like to slide on a late night 🛷`)
     }
+  } else{
+    twiml.message(`Signup for the C.L.B. Hotline at: https://clb-hotline.herokuapp.com/`)
   }
-
-  twiml.message(`Signup for the C.L.B. Hotline at: https://clb-hotline.herokuapp.com/`)
 
   response.writeHead(200, { 'Content-Type': 'text/xml' })
   response.end(twiml.toString())
