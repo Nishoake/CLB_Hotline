@@ -3,7 +3,7 @@ import { ConversationalForm } from 'conversational-form'
 import newUser from '../services/newUser'
 import '../styles/main.css'
 
-export default function MyForm() {
+export default function CForm() {
   const ref = useRef();
 
   // Defining the form inputs
@@ -119,7 +119,8 @@ export default function MyForm() {
     let cf = ConversationalForm.startTheConversation({
       options: {
         theme: 'dark',
-        submitCallback: submitCallback,
+        context: ref.current,
+        submitCallback: () => {submitCallback()},
         userImage: 'https://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_400x400.png',
         robotImage: 'https://i.redd.it/moigifebc3341.jpg',
         userInterfaceOptions: {
@@ -136,7 +137,7 @@ export default function MyForm() {
       tags: formFields,
     })
 
-    ref.current.appendChild(cf.el);
+    // ref.current.appendChild(cf.el);
 
     return function unMount() {
       cf.remove();
@@ -145,8 +146,6 @@ export default function MyForm() {
 
 
   return (
-    <div className='experiment'>
-      <div ref={ref}/>
-    </div>
+      <div className='experiment' ref={ref}/>
   )
 }

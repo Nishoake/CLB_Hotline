@@ -10,14 +10,12 @@ html {
   font-family: 'Alata', sans-serif;
   display: grid;
   grid-template-columns: 50px 1fr 50px;
-  grid-template-rows: auto auto 1000px auto auto;
-  /* grid-template-rows: auto auto 1000px auto auto; */
+  grid-template-rows: auto auto auto auto;
   gap: 0px 15px;
   grid-template-areas: 
     "logo logo logo"
     ". pitch ."
     ". nocta ."
-    ". drop ."
     "footer footer footer";
 }
 
@@ -71,16 +69,15 @@ html {
   align-items: center;
 }
 
-.conversational-form {
+/* .conversational-form {
+  position: relative;
   grid-area: nocta;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  /* width: 90%; */
-  /* height: 43%; */
-  width: 50%;
-  height: 100vh;
+  width: 90%;
+  height: 43%;
   margin: 50px;
   border: 1px solid pink;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -88,7 +85,25 @@ html {
   overflow: auto;
   z-index: 1;
   visibility: hidden;
-}
+} */
+
+/* cf-context {
+  position: relative;
+  grid-area: nocta;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 90%;
+  height: 43%;
+  margin: 50px;
+  border: 1px solid pink;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: 25px;
+  overflow: auto;
+  z-index: 1;
+  visibility: hidden;
+} */
 
 .conversational-form-inner {
   /* visibility: hidden; */
@@ -98,7 +113,7 @@ html {
 p {
   text-align: auto;
   text-justify: inter-character;
-  font-size: 15px;
+  font-size: 18px;
 }
 
 .contrast {
@@ -125,6 +140,24 @@ a {
 
 .experiment {
   border: 2px solid red;
+  height: 750px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  margin: 50px;
+}
+
+.conversational-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid #282830;
+  box-shadow: 0 0 25px #282830;
+  border-radius: 25px;
+  overflow: auto;
+  z-index: 1;
 }
 
 .nish {
@@ -134,3 +167,4 @@ a {
   height: 182px; */
   font-size: 150px;
 }
+

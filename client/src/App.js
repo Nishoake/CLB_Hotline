@@ -24,10 +24,7 @@ function App() {
         <Blurb blurb='Otherwise feel free to subscribe with the interactive onboarding procees below 👇🏾' />
       </div>
       <div className='nocta'>
-        <div className='experiment'>
           <CForm />
-          <CForm />
-        </div>
       </div>
       <div className="footer">
         <Blurb blurb='Designed and Built by Nishoake 👨🏾‍💻' />

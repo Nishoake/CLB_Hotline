@@ -147,7 +147,12 @@ app.post('/bling', async (request, response) => {
     "Last name Ever, First name Greatest ⭐️",
     "I know when that Hotline Bling ... That can only mean one thing☎️",
     "Line Blowing Up 💣",
-    "I could dance like Michael Jack-Son 🕺🏽"
+    "I could dance like Michael Jack-Son 🕺🏽",
+    "Always been a gem 💎",
+    "Put My Feelings on Ice ❄️",
+    "Somehow still heartless 💔",
+    "Heart is only getting colder 🥶",
+    "Do you love me? Are you riding?"
   ]
   // save the From # and text body into constants, 'sender' and 'text' respectively
   const sender = request.body.From
