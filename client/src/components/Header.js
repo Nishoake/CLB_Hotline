@@ -1,8 +1,9 @@
 import React from 'react'
+import '../styles/main.css'
 
 const Header = ({ title }) => {
   return (
-    <h1><i>{title}</i></h1>
+    <h1 className='outlineText'><i>{title}</i></h1>
   )
 }
 

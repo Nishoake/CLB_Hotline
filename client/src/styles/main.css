@@ -27,6 +27,7 @@ html {
   grid-area: logo;
   width: 100%;
   font-family: Helvetica;
+  margin-top: 40px;
 }
 
 .pitch {
@@ -35,6 +36,8 @@ html {
   justify-content: flex-start;
   align-items: center;
   grid-area: pitch;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .nocta {
@@ -60,6 +63,7 @@ html {
   align-items: center;
   grid-area: footer;
   background-color: #282830;
+  margin-top: 50px;
 }
 
 .footerIcon {
@@ -118,6 +122,8 @@ p {
 
 .contrast {
   color: #ff6666;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .icon {
@@ -128,14 +134,19 @@ p {
   padding: 10px;
   margin: 10px;
   transition-duration: 0.4s;
+  color: #ffc0cb;
 }
 
 .icon:hover {
-  color: #ffc0cb;
+  color: white;
 }
 
 a { 
   color: inherit; 
+}
+
+.footerText {
+  color: pink;
 }
 
 .experiment {
@@ -168,3 +179,43 @@ a {
   font-size: 150px;
 }
 
+.outlineText {
+  margin: 0px;
+  -webkit-text-stroke: 3px white;
+  -webkit-text-fill-color: pink;
+  font-size: 50px;
+  /* text-shadow:
+       3px 3px 0 white,
+     -1px -1px 0 white,  
+      1px -1px 0 white,
+      -1px 1px 0 white,
+       1px 1px 0 white; */
+}
+
+.solidText {
+  margin: 0px;
+  /* -webkit-text-stroke: 1px white; */
+  font-size: 75px;
+}
+
+/* h1 {
+  margin: 0px;
+  -webkit-text-stroke: 1px white;
+  -webkit-text-fill-color: pink;
+} */
+
+path {
+  fill: transparent;
+}
+
+.wavy {
+  /* background-color: #333; */
+  font-size: 40px;
+  margin: 0px;
+}
+
+.ms-word-center {
+  display: table;
+  text-align: center;
+  margin: 10px;
+}
