@@ -120,6 +120,9 @@ export default function CForm() {
       options: {
         theme: 'dark',
         context: ref.current,
+        // preventAutoFocus: true,
+        // preventAutoStart: true,
+        // showProgressBar: true,
         submitCallback: () => {submitCallback()},
         userImage: 'https://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_400x400.png',
         robotImage: 'https://i.redd.it/moigifebc3341.jpg',
@@ -131,7 +134,6 @@ export default function CForm() {
           //   showThinking: true,
           // }
         },
-        preventAutoFocus: false,
         loadExternalStyleSheet: true
       },
       tags: formFields,

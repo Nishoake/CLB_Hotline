@@ -145,7 +145,7 @@ app.post('/bling', async (request, response) => {
     "I'm outside in an AMG 🚘",
     "You like to slide on a late night 🛷`",
     "Last name Ever, First name Greatest ⭐️",
-    "I know when that Hotline Bling ... That can only mean one thing☎️",
+    "You used to call me on my cellphone☎️",
     "Line Blowing Up 💣",
     "I could dance like Michael Jack-Son 🕺🏽",
     "Always been a gem 💎",
