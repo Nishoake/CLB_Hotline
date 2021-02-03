@@ -1,5 +1,6 @@
 import React from 'react'
 import CForm from './components/CForm'
+import {useSpring, animated} from 'react-spring'
 import Header from './components/Header'
 import SolidHeader from './components/SolidHeader'
 import Question from './components/Question'
@@ -10,19 +11,25 @@ import Footer from './components/Footer'
 import './styles/main.css'
 
 function App() {
+  // define spring
+  // const propsTop = useSpring({ opacity: 1, from: { opacity: 0 }, config: { mass: 25 } })
+  const propsTop = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 3000 } })
+  const propsMiddle = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 3500 } })
+  const propsBottom = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 4000 } })
+  
   return (
     // <div className="parent">
     //   <CForm className='conversational-form'/>
     // </div>
     <div className='parent'>
-      <div className='logo'>
+      <animated.div style={propsTop} className='logo'>
         <Header title='C.L.B. HOTLINE' />
         <Header title='C.L.B. HOTLINE' />
         <SolidHeader title='C.L.B. HOTLINE' />
         <Header title='C.L.B. HOTLINE' />
         <Header title='C.L.B. HOTLINE' />
-      </div>
-      <div className="pitch">
+      </animated.div>
+      <animated.div style={propsMiddle} className="pitch">
         <div className="ms-word-center">
           <Question question="Growing impatient for the release of Drake's Certified Lover Boy?" />
         </div>
@@ -34,10 +41,10 @@ function App() {
         <div className="ms-word-center">
           <Blurb blurb='Feel free to subscribe with the interactive onboarding procees below 👇🏾' />
         </div>
-         </div>
-      <div className='nocta'>
+      </animated.div>
+      <animated.div style={propsBottom} className='nocta'>
           <CForm />
-      </div>
+      </animated.div>
       <div className="footer">
         <Blurb blurb='Designed and Built by Nishoake 👨🏾‍💻' />
         <div className="footerIcon">
