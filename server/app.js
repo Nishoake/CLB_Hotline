@@ -20,7 +20,7 @@ const Subscriber = require('./models/subscriber')
 
 // Connecting to the database
 const MONGODB_URI = process.env.MONGODB_URI
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 // Twilio Constants
 const Twilio_SID = process.env.TWILIO_ACCOUNT_SID
@@ -37,7 +37,7 @@ async function lookup(number){
     let result = await TwilioApi.lookups.phoneNumbers(number).fetch()
 
     // Returning the number in format expected by database
-    console.log(`lookup: ${result.phoneNumber}`)
+    // console.log(`lookup: ${result.phoneNumber}`)
     return result.phoneNumber
   } catch(error){
       console.error(`Not a valid North American number => ${error}`)
