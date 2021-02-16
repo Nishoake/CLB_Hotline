@@ -28,7 +28,31 @@ html {
   }
 
   .bottom {
-    visibility: hidden;
+    visibility: collapse;
+  }
+
+  /* Graphic/Logo Sizes */
+  .outlineText {
+    margin: 0px;
+    -webkit-text-stroke: 3px white;
+    -webkit-text-fill-color: pink;
+    font-size: 50px;
+  }
+
+  .solidText {
+    margin: 0px;
+    font-size: 65px;
+  }
+
+  /* Responsive Form Stylings */
+  .CForm {
+    height: 750px;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 50px;
+    margin-left: 100px;
   }
 }
 
@@ -54,7 +78,30 @@ html {
   }
 
   .bottom {
-    visibility: hidden;
+    visibility: collapse;
+  }
+
+  /* Graphic/Logo Sizes */
+  .outlineText {
+    margin: 0px;
+    -webkit-text-stroke: 3px white;
+    -webkit-text-fill-color: pink;
+    font-size: 3.5vw;
+  }
+
+  .solidText {
+    margin: 0px;
+    font-size: 5.25vw;
+  }
+
+  /* Responsive Form Stylings */
+  .CForm {
+    height: 750px;
+    width: 45vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 50px;
   }
 }
 
@@ -65,7 +112,7 @@ html {
   color: white;
   font-family: 'Alata', sans-serif;
   display: grid;
-  grid-template-columns: 50px 1fr 50px;
+  grid-template-columns: 5px 1fr 5px;
   grid-template-rows: auto auto auto auto;
   gap: 0px 15px;
   grid-template-areas: 
@@ -77,11 +124,36 @@ html {
 
   /* Blurb visibility */
   .right {
-    visibility: hidden;
+    visibility: collapse;
   }
 
   .bottom {
     visibility: visible;
+  }
+
+  /* Graphic/Logo Sizes */
+  .outlineText {
+    margin: 0px;
+    -webkit-text-stroke: 3px white;
+    -webkit-text-fill-color: pink;
+    font-size: 7vw;
+    /* font-size: 30px; */
+  }
+
+  .solidText {
+    margin: 0px;
+    font-size: 10vw;
+    /* font-size: 40px; */
+  }
+
+  /* Responsive Form Stylings */
+  .CForm {
+    height: 750px;
+    width: 90vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 10px;
   }
 }
 
@@ -189,15 +261,6 @@ a {
 }
 
 /* Form Stylings */
-.CForm {
-  height: 750px;
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  margin: 50px;
-}
-
 .conversational-form {
   display: flex;
   flex-direction: column;
@@ -211,14 +274,14 @@ a {
 }
 
 /* Graphic/Logo Stylings */
-.outlineText {
+/* .outlineText {
   margin: 0px;
   -webkit-text-stroke: 3px white;
   -webkit-text-fill-color: pink;
-  font-size: 300%;
+  font-size: 3.5vw;
 }
 
 .solidText {
   margin: 0px;
-  font-size: 450%;
-}
+  font-size: 5.25vw;
+} */
