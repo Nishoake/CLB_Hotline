@@ -3,7 +3,7 @@ import '../styles/main.css'
 
 const Question = ({ question }) => {
   return (
-    <h2 className='contrast'>{question}</h2>
+    <h2 className='contrast'><i>{question}</i></h2>
   )
 }
 

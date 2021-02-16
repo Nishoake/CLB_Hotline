@@ -11,7 +11,8 @@ html {
   /* Grid-Template-Areas */
   .parent {
   color: white;
-  font-family: 'Alata', sans-serif;
+  /* font-family: 'Alata', sans-serif; */
+  font-family: 'Futura', sans-serif;
   display: grid;
   grid-template-columns: auto 550px 550px auto;
   grid-template-rows: auto auto auto;
@@ -61,7 +62,8 @@ html {
   /* Grid-Template-Areas */
   .parent {
   color: white;
-  font-family: 'Alata', sans-serif;
+  /* font-family: 'Alata', sans-serif; */
+  font-family: 'Futura', sans-serif;
   display: grid;
   grid-template-columns: 50px 1fr 1fr 50px;
   grid-template-rows: auto auto auto;
@@ -110,7 +112,8 @@ html {
   /* Grid-Template-Areas */
   .parent {
   color: white;
-  font-family: 'Alata', sans-serif;
+  /* font-family: 'Alata', sans-serif; */
+  font-family: 'Futura', sans-serif;
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-rows: auto auto auto auto;
