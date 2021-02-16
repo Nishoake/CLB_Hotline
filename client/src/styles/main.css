@@ -112,7 +112,7 @@ html {
   color: white;
   font-family: 'Alata', sans-serif;
   display: grid;
-  grid-template-columns: 5px 1fr 5px;
+  grid-template-columns: auto 1fr auto;
   grid-template-rows: auto auto auto auto;
   gap: 0px 15px;
   grid-template-areas: 
@@ -226,7 +226,7 @@ p {
 .ms-word-center {
   display: table;
   text-align: center;
-  margin: 25px;
+  margin-top: 25px;
 }
 
 /* Footer Stylings */
