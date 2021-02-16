@@ -120,7 +120,7 @@ export default function CForm() {
       options: {
         theme: 'dark',
         context: ref.current,
-        // preventAutoFocus: true,
+        preventAutoFocus: false,
         // preventAutoStart: true,
         // showProgressBar: true,
         submitCallback: () => {submitCallback()},

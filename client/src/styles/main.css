@@ -136,13 +136,13 @@ html {
     margin: 0px;
     -webkit-text-stroke: 3px white;
     -webkit-text-fill-color: pink;
-    font-size: 7vw;
+    font-size: 9vw;
     /* font-size: 30px; */
   }
 
   .solidText {
     margin: 0px;
-    font-size: 10vw;
+    font-size: 12vw;
     /* font-size: 40px; */
   }
 
