@@ -5,9 +5,7 @@ import Header from './components/Header'
 import SolidHeader from './components/SolidHeader'
 import Question from './components/Question'
 import Blurb from './components/Blurb'
-// import FooterBlurb from './components/FooterBlurb'
 import Footer from './components/Footer'
-// import Logo from './components/Logo'
 import './styles/main.css'
 
 function App() {
@@ -36,10 +34,12 @@ function App() {
         <div className="ms-word-center">
           <Blurb blurb='C.L.B. Hotline is a simple web app built to solve this very problem. The app will send subscribers an SMS text mesage to their phone once the album is available on streaming platforms. Currently only Canadian and U.S. mobile numbers are supported 🇨🇦 & 🇺🇸' />
           {/* <Blurb blurb='If you are still on the fence like Mr. Feeny please check how it all works by cliking here 💡' /> */}
-          {/* <Blurb blurb='Feel free to subscribe with the interactive onboarding procees below 👇🏾' /> */}
         </div>
-        <div className="ms-word-center">
-          <Blurb blurb='Feel free to subscribe with the interactive onboarding procees below 👇🏾' />
+        <div className="ms-word-center bottom">
+          <Blurb blurb='Feel free to subscribe with the interactive onboarding process below 👇🏾' />
+        </div>
+        <div className="ms-word-center right">
+          <Blurb blurb='Feel free to subscribe with the interactive onboarding process to the right 👉🏾' />
         </div>
       </animated.div>
       <animated.div style={propsBottom} className='nocta'>
@@ -50,7 +50,7 @@ function App() {
         <div className="footerIcon">
           <Footer icon='fab fa-spotify' label='Spotify' link='https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4' />
           <Footer icon='fab fa-github' label='GitHub' link='https://github.com/Nishoake/CLB_Hotline' />
-          <Footer icon='fab fa-linkedin-in' label='LinkedIn' link='https://www.linkedin.com/in/nishoake-sribavan-421240139/' />
+          <Footer icon='fab fa-instagram' label='Instagram' link='' />
         </div>
       </div>
     </div>

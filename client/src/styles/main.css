@@ -8,6 +8,7 @@ html {
 /* media queries for responsive design */
 /* max size */
 @media (max-width: 3000px) {
+  /* Grid-Template-Areas */
   .parent {
   color: white;
   font-family: 'Alata', sans-serif;
@@ -20,10 +21,20 @@ html {
     ". pitch nocta ."
     "footer footer footer footer";
   }
+
+  /* Blurb visibility */
+  .right {
+    visibility: visible;
+  }
+
+  .bottom {
+    visibility: hidden;
+  }
 }
 
 /* Desktop */
 @media (max-width: 1200px) {
+  /* Grid-Template-Areas */
   .parent {
   color: white;
   font-family: 'Alata', sans-serif;
@@ -36,10 +47,20 @@ html {
     ". pitch nocta ."
     "footer footer footer footer";
   }
+
+  /* Blurb visibility */
+  .right {
+    visibility: visible;
+  }
+
+  .bottom {
+    visibility: hidden;
+  }
 }
 
 /* Mobile and Tablet */
 @media (max-width: 950px) {
+  /* Grid-Template-Areas */
   .parent {
   color: white;
   font-family: 'Alata', sans-serif;
@@ -52,6 +73,15 @@ html {
     ". pitch ."
     ". nocta ."
     "footer footer footer";
+  }
+
+  /* Blurb visibility */
+  .right {
+    visibility: hidden;
+  }
+
+  .bottom {
+    visibility: visible;
   }
 }
 
@@ -108,13 +138,7 @@ html {
   margin-top: 50px;
 }
 
-.footerIcon {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
+/* Blurb Stylings */
 p {
   text-align: auto;
   text-justify: inter-character;
@@ -125,6 +149,20 @@ p {
   color: #ff6666;
   display: table-cell;
   vertical-align: middle;
+}
+
+.ms-word-center {
+  display: table;
+  text-align: center;
+  margin: 25px;
+}
+
+/* Footer Stylings */
+.footerIcon {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .icon {
@@ -150,8 +188,8 @@ a {
   color: pink;
 }
 
-.experiment {
-  /* border: 2px solid red; */
+/* Form Stylings */
+.CForm {
   height: 750px;
   width: 500px;
   display: flex;
@@ -172,42 +210,15 @@ a {
   z-index: 1;
 }
 
-.nish {
-  display: flex;
-  fill: red;
-  /* width: 100px;
-  height: 182px; */
-  font-size: 150px;
-}
-
+/* Graphic/Logo Stylings */
 .outlineText {
   margin: 0px;
   -webkit-text-stroke: 3px white;
   -webkit-text-fill-color: pink;
   font-size: 300%;
-  /* text-shadow:
-       3px 3px 0 white,
-     -1px -1px 0 white,  
-      1px -1px 0 white,
-      -1px 1px 0 white,
-       1px 1px 0 white; */
 }
 
 .solidText {
   margin: 0px;
-  /* -webkit-text-stroke: 1px white; */
   font-size: 450%;
-}
-
-/* h1 {
-  margin: 0px;
-  -webkit-text-stroke: 1px white;
-  -webkit-text-fill-color: pink;
-} */
-
-.ms-word-center {
-  display: table;
-  text-align: center;
-  margin: 25px;
-  /* padding: 50px; */
 }

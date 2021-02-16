@@ -18,13 +18,13 @@ export default function CForm() {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_2',
-      'cf-questions': 'In case you were wondering, I\'m still making the final tweaks to CLB 🌹'
+      'cf-questions': 'In case you were wondering, I\'m still making the final tweaks to C.L.B. 🌹'
     },
     {
       'tag': 'cf-robot-message',
       'type': 'text',
       'name': 'greeting_3',
-      'cf-questions': 'But to make it up to you as a fan, I will personally text you once I drop CLB 💽'
+      'cf-questions': 'But to make it up to you as a fan, I will personally text you once I drop C.L.B. 💽'
     },
     // {
     //   'tag': 'select',
@@ -100,19 +100,19 @@ export default function CForm() {
 
       if (response === "Invalid number"){
         cf.addRobotChatResponse("This is an invalid Canadian 🇨🇦 / American 🇺🇸 cell phone number {firstname} 😂")
-        cf.addRobotChatResponse("KMT ... I took a break from CLB, now it's back to that, {firstname} ✌🏼")
+        cf.addRobotChatResponse("KMT ... I took a break from C.L.B., now it's back to that, {firstname} ✌🏼")
       } else if (response === "Non-unique number"){
         cf.addRobotChatResponse("You must love talking with me {firstname} 😂")
-        cf.addRobotChatResponse("You've already subscribed to the CLB Hotline ✍🏼")
-        cf.addRobotChatResponse("I gotta get back to CLB, but until next time {firstname} ✌🏼")
+        cf.addRobotChatResponse("You've already subscribed to the C.L.B. Hotline ✍🏼")
+        cf.addRobotChatResponse("I gotta get back to C.L.B., but until next time {firstname} ✌🏼")
       } else{
         cf.addRobotChatResponse("Woi Oi! You've been subscribed! 💘")
         cf.addRobotChatResponse(`I'll send out a confirmation text from ${response.secret} shortly 📱`)
         cf.addRobotChatResponse(`If you change your mind just text 'TAKECARE' to ${response.secret} to unsubscribe`)
-        // cf.addRobotChatResponse("Also expect a text from the same number once CLB drops 🔥")
+        // cf.addRobotChatResponse("Also expect a text from the same number once C.L.B. drops 🔥")
         // cf.addRobotChatResponse("In the meantime there will be notifications for other album drops I'm excited for 🎶")
         // cf.addRobotChatResponse("Artists like Playboi Carti & Mariah the Scientist 🔥")
-        cf.addRobotChatResponse("I gotta get back to CLB, but until next time {firstname} ✌🏼")
+        cf.addRobotChatResponse("I gotta get back to C.L.B., but until next time {firstname} ✌🏼")
       }
     }
 
@@ -148,6 +148,6 @@ export default function CForm() {
 
 
   return (
-      <div className='experiment' ref={ref}/>
+      <div className='CForm' ref={ref}/>
   )
 }
