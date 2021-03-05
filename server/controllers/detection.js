@@ -34,9 +34,10 @@ async function getAlbum(artistID) {
     const options = {
       id: artistID,
       setting: {
-        limit: 1
+        limit: 1,
+        include_groups: 'single'
       },
-      available_markets: 'CA'
+      available_markets: 'CA',
     }
 
     let data = await spotifyApi.getArtistAlbums(options.id, options.setting)
@@ -81,7 +82,7 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
 
   try{
     let response = await TwilioApi.messages.create({
-      body: `Hey ${Recipient_Name}! ${artistName} has just dropped ${albumName}! Check it out at: ${albumLink}`,
+      body: `THIS IS NOT A DRILL ${Recipient_Name}! I wanted to provide some music before C.L.B. ☠️ Stream ${albumName} at: ${albumLink}`,
       from: Twilio_Number,
       to: Twilio_Recipient
     })
@@ -132,6 +133,7 @@ async function detect(refAlbum, artistID, clientResponse) {
   else {
     // Sending Texts
     console.log(`${latestAlbum.albumName} has dropped!`)
+    // COMMENT FOR TESTING
     hotlineBling(latestAlbum)
     console.log('Texts messages have been sent!')
 
