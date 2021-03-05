@@ -35,7 +35,7 @@ async function getAlbum(artistID) {
       id: artistID,
       setting: {
         limit: 1,
-        include_groups: 'single'
+        include_groups: 'album'
       },
       available_markets: 'CA',
     }
@@ -82,7 +82,7 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
 
   try{
     let response = await TwilioApi.messages.create({
-      body: `THIS IS NOT A DRILL ${Recipient_Name}! I wanted to provide some music before C.L.B. ☠️ Stream ${albumName} at: ${albumLink}`,
+      body: `THIS IS NOT A DRILL ${Recipient_Name}! Stream ${albumName} at: ${albumLink}`,
       from: Twilio_Number,
       to: Twilio_Recipient
     })
