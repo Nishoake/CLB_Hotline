@@ -79,10 +79,12 @@ function updateClientRespone(clientResponse, newName, newImage, newLink) {
 // Send text message with Twilio SMS API
 async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistName, albumName, albumLink) {
   console.log('The CLB Hotline is currently in production mode')
+  // uncomment for the default drop message
+  // `THIS IS NOT A DRILL ${Recipient_Name}! ${albumName} is streaming live at: ${albumLink}`
 
   try{
     let response = await TwilioApi.messages.create({
-      body: `THIS IS NOT A DRILL ${Recipient_Name}! ${albumName} is streaming live on: ${albumLink}`,
+      body: `Yo ${Recipient_Name}! Check out my brother ${artistName}'s new album ${albumName} streaming live at: ${albumLink}`,
       from: Twilio_Number,
       to: Twilio_Recipient
     })
