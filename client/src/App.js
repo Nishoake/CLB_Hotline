@@ -11,8 +11,8 @@ import './styles/main.css'
 function App() {
   // define spring
   // const propsTop = useSpring({ opacity: 1, from: { opacity: 0 }, config: { mass: 25 } })
-  const propsTop = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 1000 } })
-  const propsMiddle = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 1000 } })
+  const propsTop = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 500 } })
+  const propsMiddle = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 500 } })
   const propsBottom = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 1000 } })
   
   return (
