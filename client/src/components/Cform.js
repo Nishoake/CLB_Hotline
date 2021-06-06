@@ -110,7 +110,7 @@ export default function CForm() {
         cf.addRobotChatResponse(`I'll send out a confirmation text from ${response.secret} shortly 📱`)
         cf.addRobotChatResponse(`If you change your mind just text 'TAKECARE' to ${response.secret} to unsubscribe`)
         // cf.addRobotChatResponse("Also expect a text from the same number once C.L.B. drops 🔥")
-        // cf.addRobotChatResponse("In the meantime there will be notifications for other album drops I'm excited for 🎶")
+        cf.addRobotChatResponse("In the meantime there will be notifications for other album drops I'm excited for like Travis Scott's Utopia🎶")
         // cf.addRobotChatResponse("Artists like Playboi Carti & Mariah the Scientist 🔥")
         cf.addRobotChatResponse("I gotta get back to C.L.B., but until next time {firstname} ✌🏼")
       }

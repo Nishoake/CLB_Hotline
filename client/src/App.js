@@ -11,9 +11,9 @@ import './styles/main.css'
 function App() {
   // define spring
   // const propsTop = useSpring({ opacity: 1, from: { opacity: 0 }, config: { mass: 25 } })
-  const propsTop = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 3000 } })
-  const propsMiddle = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 3500 } })
-  const propsBottom = useSpring({ opacity: 1, from: { opacity: 0 }, })
+  const propsTop = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 1000 } })
+  const propsMiddle = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 1000 } })
+  const propsBottom = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 1000 } })
   
   return (
     // <div className="parent">
@@ -46,11 +46,11 @@ function App() {
           <CForm />
       </animated.div>
       <div className="footer">
-        <Blurb blurb='Designed and Built by Nishoake 👨🏾‍💻' />
+        <Blurb blurb='Designed and Built by Nishoake Sribavan 👨🏾‍💻' />
         <div className="footerIcon">
           <Footer icon='fab fa-spotify' label='Spotify' link='https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4' />
           <Footer icon='fab fa-github' label='GitHub' link='https://github.com/Nishoake/CLB_Hotline' />
-          <Footer icon='fab fa-instagram' label='Instagram' link='' />
+          {/* <Footer icon='fab fa-instagram' label='Instagram' link='' /> */}
         </div>
       </div>
     </div>
