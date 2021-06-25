@@ -10,17 +10,17 @@ html {
 @media (max-width: 3000px) {
   /* Grid-Template-Areas */
   .parent {
-  color: white;
-  /* font-family: 'Alata', sans-serif; */
-  font-family: 'Futura', sans-serif;
-  display: grid;
-  grid-template-columns: auto 550px 50px 600px auto;
-  grid-template-rows: auto auto auto;
-  gap: 0px 15px;
-  grid-template-areas: 
-    "logo logo logo logo logo"
-    ". pitch . nocta ."
-    "footer footer footer footer footer";
+    color: white;
+    /* font-family: 'Alata', sans-serif; */
+    font-family: 'Futura', sans-serif;
+    display: grid;
+    grid-template-columns: auto 550px 50px 600px auto;
+    grid-template-rows: auto auto auto;
+    gap: 0px 15px;
+    grid-template-areas: 
+      "logo logo logo logo logo"
+      ". pitch . nocta ."
+      "footer footer footer footer footer";
   }
 
   /* Blurb visibility */
@@ -60,17 +60,17 @@ html {
 @media (max-width: 1200px) {
   /* Grid-Template-Areas */
   .parent {
-  color: white;
-  /* font-family: 'Alata', sans-serif; */
-  font-family: 'Futura', sans-serif;
-  display: grid;
-  grid-template-columns: 50px 1fr 1fr 50px;
-  grid-template-rows: auto auto auto;
-  gap: 0px 15px;
-  grid-template-areas: 
-    "logo logo logo logo"
-    ". pitch nocta ."
-    "footer footer footer footer";
+    color: white;
+    /* font-family: 'Alata', sans-serif; */
+    font-family: 'Futura', sans-serif;
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 50px;
+    grid-template-rows: auto auto auto;
+    gap: 0px 15px;
+    grid-template-areas: 
+      "logo logo logo logo"
+      ". pitch nocta ."
+      "footer footer footer footer";
   }
 
   /* Blurb visibility */
@@ -110,18 +110,18 @@ html {
 @media (max-width: 950px) {
   /* Grid-Template-Areas */
   .parent {
-  color: white;
-  /* font-family: 'Alata', sans-serif; */
-  font-family: 'Futura', sans-serif;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: auto auto auto auto;
-  gap: 0px 15px;
-  grid-template-areas: 
-    "logo logo logo"
-    ". pitch ."
-    ". nocta ."
-    "footer footer footer";
+    color: white;
+    /* font-family: 'Alata', sans-serif; */
+    font-family: 'Futura', sans-serif;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-rows: auto auto auto auto;
+    gap: 0px 15px;
+    grid-template-areas: 
+      "logo logo logo"
+      ". pitch ."
+      ". nocta ."
+      "footer footer footer";
   }
 
   /* Blurb visibility */

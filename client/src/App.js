@@ -46,11 +46,10 @@ function App() {
           <CForm />
       </animated.div>
       <div className="footer">
-        <Blurb blurb='Designed and Built by Nishoake Sribavan 👨🏾‍💻' />
+        <Blurb blurb='Designed and Built by Nish 👨🏾‍💻' />
         <div className="footerIcon">
           <Footer icon='fab fa-spotify' label='Spotify' link='https://open.spotify.com/artist/3TVXtAsR1Inumwj472S9r4' />
-          <Footer icon='fab fa-github' label='GitHub' link='https://github.com/Nishoake/CLB_Hotline' />
-          {/* <Footer icon='fab fa-instagram' label='Instagram' link='' /> */}
+          <Footer icon='fab fa-itunes-note' label='Apple Music' link='https://music.apple.com/us/artist/drake/271256' />
         </div>
       </div>
     </div>
