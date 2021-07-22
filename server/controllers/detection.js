@@ -31,6 +31,17 @@ async function getAlbum(artistID) {
   try {
     await authenticate()
 
+    // Single Check
+    // const options = {
+    //   id: artistID,
+    //   setting: {
+    //     limit: 1,
+    //     include_groups: 'appears_on'
+    //   },
+    //   available_markets: 'CA',
+    // }
+
+    // Album Check
     const options = {
       id: artistID,
       setting: {
@@ -83,8 +94,23 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
   // `THIS IS NOT A DRILL ${Recipient_Name}! ${albumName} is streaming live at: ${albumLink}`
 
   try{
+    // Message for Singles
+    // let response = await TwilioApi.messages.create({
+    //   body: `Wagawn ${Recipient_Name}! Check me out on ${artistName}'s new single, ${albumName} now streaming live at: ${albumLink}`,
+    //   from: Twilio_Number,
+    //   to: Twilio_Recipient
+    // })
+
+    // Message for CLB
+    // let response = await TwilioApi.messages.create({
+    //   body: `Wagawn ${Recipient_Name}! It's finally here 🏹💘🦉 ${albumName} is now streaming live at: ${albumLink}`,
+    //   from: Twilio_Number,
+    //   to: Twilio_Recipient
+    // })
+
+    // Message for other Albums
     let response = await TwilioApi.messages.create({
-      body: `Wagawn ${Recipient_Name}! It's finally here 🏹💘🦉 ${albumName} is now streaming live at: ${albumLink}`,
+      body: `Hey ${Recipient_Name}! ${artistName}'s new poject, ${albumName} 🙏🏾 is now streaming live at: ${albumLink}`,
       from: Twilio_Number,
       to: Twilio_Recipient
     })
