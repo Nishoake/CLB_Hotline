@@ -110,7 +110,7 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
 
     // Message for other Albums
     let response = await TwilioApi.messages.create({
-      body: `Hey ${Recipient_Name}! ${artistName}'s new poject, ${albumName} 🙏🏾 is now streaming live at: ${albumLink}`,
+      body: `Hey ${Recipient_Name}! ${artistName}'s new poject, ${albumName} 🙌🏾 is now streaming live at: ${albumLink}`,
       from: Twilio_Number,
       to: Twilio_Recipient
     })
