@@ -30,6 +30,9 @@ const Twilio_Number = process.env.TWILIO_NUMBER
 // Instantiating Twilio API Object
 const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
 
+
+// -------------------------------
+// Defining Functions
 // Twilio Lookup
 async function lookup(number){
   try{
@@ -93,7 +96,7 @@ detect(artistID, clientResponse)
 app.get('/api', async (request, response) => {
   console.log(`The client is requesting an update on the album drop`)
 
-  response.json('CLB is not dropping when the ball drops')
+  response.json('The aura is tranquil')
 })
 
 app.post('/api', async (request, response) => {
@@ -118,7 +121,9 @@ app.post('/api', async (request, response) => {
     name: body.name,
     number: number
   })
-  console.log(user)
+
+  // console.log(user)
+
   // Saving user
   let newUser = await user.save()
   let confirmation = {
