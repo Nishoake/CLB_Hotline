@@ -101,19 +101,19 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
     //   to: Twilio_Recipient
     // })
 
-    // Message for CLB
-    let response = await TwilioApi.messages.create({
-      body: `Hey ${Recipient_Name}! My album ${albumName} has been delivered 🏹💘🤰🏽👼🏾  and is now streaming live at: ${albumLink}`,
-      from: Twilio_Number,
-      to: Twilio_Recipient
-    })
-
-    // Message for other Albums
+    // // Message for CLB
     // let response = await TwilioApi.messages.create({
-    //   body: `Hey ${Recipient_Name}! ${artistName}'s new project, ${albumName} 🙌🏾 is now streaming live at: ${albumLink}`,
+    //   body: `Hey ${Recipient_Name}! My album ${albumName} has been delivered 🏹💘🤰🏽👼🏾  and is now streaming live at: ${albumLink}`,
     //   from: Twilio_Number,
     //   to: Twilio_Recipient
     // })
+
+    // Message for other Albums
+    let response = await TwilioApi.messages.create({
+      body: `Hey ${Recipient_Name}! ${artistName}'s new project, ${albumName} is now streaming live at: ${albumLink}`,
+      from: Twilio_Number,
+      to: Twilio_Recipient
+    })
 
     console.log(response.sid)
   } catch (error) {
