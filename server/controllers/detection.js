@@ -89,7 +89,7 @@ function updateClientRespone(clientResponse, newName, newImage, newLink) {
 
 // Send text message with Twilio SMS API
 async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistName, albumName, albumLink) {
-  console.log('The CLB Hotline is currently in production mode')
+
   // uncomment for the default drop message
   // `THIS IS NOT A DRILL ${Recipient_Name}! ${albumName} is streaming live at: ${albumLink}`
 
@@ -115,7 +115,6 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
       to: Twilio_Recipient
     })
 
-    console.log(response.sid)
   } catch (error) {
       console.error(`Not a valid North American number => ${error}`)
   }
@@ -131,7 +130,6 @@ async function hotlineBling(albumInfo) {
 
     // Array of subscribers
     const subscribers = await Subscriber.find()
-    console.log('Start!')
 
     for (let i = 0; i < subscribers.length; i++) {
       const name = subscribers[i].name
@@ -140,7 +138,6 @@ async function hotlineBling(albumInfo) {
       await sendText(Twilio_Number, number, name, artistName, albumName, albumLink)
     }
 
-    console.log('Done!')
   } catch{
       console.error(`Something went wrong sending texts => ${error}`)
   }
@@ -163,7 +160,6 @@ async function detect(refAlbum, artistID, clientResponse) {
     console.log(`${latestAlbum.albumName} has dropped!`)
     // COMMENT FOR TESTING
     hotlineBling(latestAlbum)
-    console.log('Texts messages have been sent!')
 
     // Updating the Client's NewAlbum component
     updateClientRespone(clientResponse, latestAlbum.albumName, latestAlbum.image, latestAlbum.link)
@@ -175,11 +171,9 @@ async function detect(refAlbum, artistID, clientResponse) {
 async function detectAlbum(artistID, clientResponse) {
   // Initializing the reference album to compare against
   const refAlbum = await getAlbum(artistID)
-  console.log(`refAlbum: ${refAlbum.albumName}`)
 
   // Calling the Detection Algorithm
   detect(refAlbum, artistID, clientResponse)
-  console.log(`Completed!`)
 }
 
 

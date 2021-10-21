@@ -40,7 +40,6 @@ async function lookup(number){
     let result = await TwilioApi.lookups.phoneNumbers(number).fetch()
 
     // Returning the number in format expected by database
-    // console.log(`lookup: ${result.phoneNumber}`)
     return result.phoneNumber
   } catch(error){
       console.error(`Not a valid North American number => ${error}`)
@@ -51,15 +50,12 @@ async function lookup(number){
 // Twilio Confirmation Text
 async function sendConfirmation(Twilio_Number, Recipient_Number, Recipient_Name) {
   try {
-    console.log('The C.L.B. Hotline is currently sending a text message')
 
     let response = await TwilioApi.messages.create({
       body: `Hey ${Recipient_Name}! You are now subscribed to the C.L.B. Hotline! If this is a mistake, or you change your mind just text 'TAKECARE' to unsubscribe`,
       from: Twilio_Number,
       to: Recipient_Number
     })
-
-    console.log(response.sid)
 
   } catch (error) {
     console.error(`Not a valid mobile number => ${error}`)
@@ -75,6 +71,7 @@ function randomize(max){
 // Intialize port
 const port = process.env.PORT || 3005
 app.listen(port, () => {
+  // Should we get rid of this?
   console.log(`Certified Lover Boy Hotline app is currently listening at ${port}`)
 })
 
@@ -94,8 +91,6 @@ detect(artistID, clientResponse)
 // -------------------------------
 // Routes
 app.get('/api', async (request, response) => {
-  console.log(`The client is requesting an update on the album drop`)
-
   response.json('The aura is tranquil')
 })
 
@@ -122,8 +117,6 @@ app.post('/api', async (request, response) => {
     number: number
   })
 
-  // console.log(user)
-
   // Saving user
   let newUser = await user.save()
   let confirmation = {
@@ -134,7 +127,6 @@ app.post('/api', async (request, response) => {
 
   // Send confirmation text
   sendConfirmation(Twilio_Number, number, body.name)
-  console.log('Text has been sent')
 
 
   response.send(confirmation)
@@ -146,6 +138,7 @@ app.post('/bling', async (request, response) => {
   const twiml = new MessagingResponse()
 
   // Array of lyric responses
+  // MAKE SURE YOU IMPORT THIS ARRAY OF LYRICS TO SAVE NUMBER OF LINES FOR APP
   const lyrics = [
     "I'm outside in an AMG 🚘",
     "You like to slide on a late night 🛷`",

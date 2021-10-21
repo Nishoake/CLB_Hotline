@@ -19,7 +19,7 @@ html {
     gap: 0px 15px;
     grid-template-areas: 
       "logo logo logo logo logo"
-      ". pitch . nocta ."
+      ". pitch . form ."
       "footer footer footer footer footer";
   }
 
@@ -69,7 +69,7 @@ html {
     gap: 0px 15px;
     grid-template-areas: 
       "logo logo logo logo"
-      ". pitch nocta ."
+      ". pitch form ."
       "footer footer footer footer";
   }
 
@@ -120,7 +120,7 @@ html {
     grid-template-areas: 
       "logo logo logo"
       ". pitch ."
-      ". nocta ."
+      ". form ."
       "footer footer footer";
   }
 
@@ -184,12 +184,12 @@ html {
 }
 
 /* The form grid area */
-.nocta {
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  grid-area: nocta;
+  grid-area: form;
 }
 
 /* Additional grid-template-area */

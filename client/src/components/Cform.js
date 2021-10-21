@@ -6,6 +6,7 @@ import '../styles/main.css'
 export default function CForm() {
   const ref = useRef();
 
+  // CLEANUP THE FORM INPUTS
   // Defining the form inputs
   const formFields = [
     {
