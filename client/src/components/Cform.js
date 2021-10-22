@@ -4,9 +4,10 @@ import newUser from '../services/newUser'
 import '../styles/main.css'
 
 export default function CForm() {
+  // Create a reference object for the form component to append to
+  // Allows form component to persist throughout multiple renders
   const ref = useRef();
 
-  // CLEANUP THE FORM INPUTS
   // Defining the form inputs
   const formFields = [
     {
@@ -27,23 +28,6 @@ export default function CForm() {
       'name': 'greeting_3',
       'cf-questions': 'But to make it up to you as a fan, I will personally text you once I drop C.L.B. 💽'
     },
-    // {
-    //   'tag': 'select',
-    //   'name': 'continue',
-    //   'cf-questions': 'How does that sound?',
-    //   'children': [
-    //     {
-    //       'tag': 'option',
-    //       'cf-label': 'Sounds good!',
-    //       'value': 'yes'
-    //     },
-    //     {
-    //       'tag': 'option',
-    //       'cf-label': 'No thank you',
-    //       'value': 'no'
-    //     }
-    //   ]
-    // },
     {
       'tag': 'input',
       'type': 'text',
@@ -55,7 +39,6 @@ export default function CForm() {
       'cf-questions': "First off, do you have name or nickname you go by?",
       'cf-input-placeholder': "Eg. The Boy",
       'cf-error': '3 - 15 characters',
-      // 'cf-conditional-continue': 'yes'
     },
     {
       'tag': 'cf-robot-message',
@@ -83,71 +66,85 @@ export default function CForm() {
       'name': 'adding_Contact_Info_1',
       'cf-questions': "Alright {firstname}! Give me a minute to verify and add you to my contacts ⏳"
     },
-    // {
-    //   'tag': 'cf-robot-message',
-    //   'name': 'ending',
-    //   'cf-conditional-continue': 'no',
-    //   'cf-questions': 'No biggie ✌🏼'
-    // },
   ]
 
+  // Lifecycle methods of the form component
   useEffect(function mount() {
     
-    // Submitting the form
+    // Callback function for submitting the form
     async function submitCallback() {
+      // Collect form data
       let newUserInfo = cf.getFormData(true)
 
+      // Send Form data as POST request to API
       let response = await newUser.addUser(newUserInfo)
 
+      // Reneder closing form text message based on response from API
       if (response === "Invalid number"){
-        cf.addRobotChatResponse("This is an invalid Canadian 🇨🇦 / American 🇺🇸 cell phone number {firstname} 😂")
-        cf.addRobotChatResponse("KMT ... I took a break from C.L.B., now it's back to that, {firstname} ✌🏼")
+        
+        cf.addRobotChatResponse(
+          `This is an invalid Canadian 🇨🇦 / American 🇺🇸 cell phone number ${firstname} 😂`
+        )
+        cf.addRobotChatResponse(
+          `KMT ... I took a break from C.L.B., now it's back to that, ${firstname} ✌🏼`
+        )
+
       } else if (response === "Non-unique number"){
-        cf.addRobotChatResponse("You must love talking with me {firstname} 😂")
-        cf.addRobotChatResponse("You've already subscribed to the C.L.B. Hotline ✍🏼")
-        cf.addRobotChatResponse("I gotta get back to C.L.B., but until next time {firstname} ✌🏼")
+        
+        cf.addRobotChatResponse(
+          `You must love talking with me ${firstname} 😂`
+        )
+        cf.addRobotChatResponse(
+          `You've already subscribed to the C.L.B. Hotline ✍🏼`
+        )
+        cf.addRobotChatResponse(
+          `I gotta get back to C.L.B., but until next time ${firstname} ✌🏼`
+        )
+
       } else{
-        cf.addRobotChatResponse("Woi Oi! You've been subscribed! 💘")
-        cf.addRobotChatResponse(`I'll send out a confirmation text from ${response.secret} shortly 📱`)
-        cf.addRobotChatResponse(`If you change your mind just text 'TAKECARE' to ${response.secret} to unsubscribe`)
-        // cf.addRobotChatResponse("Also expect a text from the same number once C.L.B. drops 🔥")
-        cf.addRobotChatResponse("In the meantime there will be notifications for other album drops I'm excited for like Travis Scott's Utopia🎶")
-        // cf.addRobotChatResponse("Artists like Playboi Carti & Mariah the Scientist 🔥")
-        cf.addRobotChatResponse("I gotta get back to C.L.B., but until next time {firstname} ✌🏼")
+
+        cf.addRobotChatResponse(
+          `Woi Oi! You've been subscribed! 💘`
+        )
+        cf.addRobotChatResponse(
+          `I'll send out a confirmation text from ${response.secret} shortly 📱`
+        )
+        cf.addRobotChatResponse(
+          `If you change your mind just text 'TAKECARE' to ${response.secret} to unsubscribe`
+        )
+        cf.addRobotChatResponse(
+          `In the meantime there will be notifications for other album drops I'm excited for like Travis Scott's Utopia🎶`
+        )
+        cf.addRobotChatResponse(
+          `I gotta get back to C.L.B., but until next time {firstname} ✌🏼`
+        )
+
       }
     }
 
+    // componentDidMount() equivalent
     let cf = ConversationalForm.startTheConversation({
       options: {
         theme: 'dark',
+        // append Form component to DOM via the ref object created by the useRef hook
         context: ref.current,
         preventAutoFocus: false,
-        // preventAutoStart: true,
-        // showProgressBar: true,
         submitCallback: () => {submitCallback()},
         userImage: 'https://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_400x400.png',
         robotImage: 'https://i.redd.it/moigifebc3341.jpg',
-        userInterfaceOptions: {
-          robot: {
-            // robotResponseTime: 1000,
-          },
-          // user: {
-          //   showThinking: true,
-          // }
-        },
         loadExternalStyleSheet: true
       },
       tags: formFields,
     })
 
-    // ref.current.appendChild(cf.el);
-
+    // componentWillUnmount() equivalent
     return function unMount() {
       cf.remove();
     }
+
   }, [formFields])
 
-
+  // Render the form by creating a div with the ref attribute assigined to the ref object created via the useRef hook above
   return (
       <div className='CForm' ref={ref}/>
   )
