@@ -13,7 +13,6 @@ import './styles/main.css'
 function App() {
   // Define springs for animation
   const propsTop = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 500 } })
-  const propsMiddle = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 500 } })
   const propsBottom = useSpring({ opacity: 1, from: { opacity: 0 }, config: { duration: 1000 } })
   
   // Render Components
@@ -30,7 +29,7 @@ function App() {
       </animated.div>
 
       {/* Div for the Text portion of the App */}
-      <animated.div style={propsMiddle} className="pitch">
+      <animated.div style={propsTop} className="pitch">
         <div className="ms-word-center">
           <Question question="Growing impatient for the release of Drake's Certified Lover Boy?" />
         </div>

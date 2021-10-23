@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import { ConversationalForm } from 'conversational-form'
 import newUser from '../services/newUser'
 import '../styles/main.css'
+import DP from '../assets/CLB_DP.jpg'
 
 export default function CForm() {
   // Create a reference object for the form component to append to
@@ -83,22 +84,22 @@ export default function CForm() {
       if (response === "Invalid number"){
         
         cf.addRobotChatResponse(
-          `This is an invalid Canadian 🇨🇦 / American 🇺🇸 cell phone number ${firstname} 😂`
+          `This is an invalid Canadian 🇨🇦 / American 🇺🇸 cell phone number {firstname} 😂`
         )
         cf.addRobotChatResponse(
-          `KMT ... I took a break from C.L.B., now it's back to that, ${firstname} ✌🏼`
+          `KMT ... I took a break from C.L.B., now it's back to that, {firstname} ✌🏼`
         )
 
       } else if (response === "Non-unique number"){
         
         cf.addRobotChatResponse(
-          `You must love talking with me ${firstname} 😂`
+          `You must love talking with me {firstname} 😂`
         )
         cf.addRobotChatResponse(
           `You've already subscribed to the C.L.B. Hotline ✍🏼`
         )
         cf.addRobotChatResponse(
-          `I gotta get back to C.L.B., but until next time ${firstname} ✌🏼`
+          `I gotta get back to C.L.B., but until next time {firstname} ✌🏼`
         )
 
       } else{
@@ -131,7 +132,7 @@ export default function CForm() {
         preventAutoFocus: false,
         submitCallback: () => {submitCallback()},
         userImage: 'https://pbs.twimg.com/profile_images/563843814725402624/Vb8k670S_400x400.png',
-        robotImage: 'https://i.redd.it/moigifebc3341.jpg',
+        robotImage: DP,
         loadExternalStyleSheet: true
       },
       tags: formFields,
