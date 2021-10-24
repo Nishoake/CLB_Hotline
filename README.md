@@ -2,7 +2,7 @@
 
 Service that will alert subscribers of highly anticipated albums once they are available on streaming platforms via SMS.
 
-Was originally create for the release of Drake's Certified Lover Boy, but now will track future major album releases including: Adele's 30 and Travis Scott's Utopia.
+Was originally created for the release of Drake's Certified Lover Boy, but now will track future major album releases including: Adele's 30 and Travis Scott's Utopia.
 
 Check the project out at: <https://clb-hotline.herokuapp.com>
 
