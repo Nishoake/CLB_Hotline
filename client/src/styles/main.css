@@ -1,4 +1,3 @@
-
 html {
   margin: 0px;
   padding: env(safe-area-inset);
@@ -276,16 +275,3 @@ a {
   overflow: auto;
   z-index: 1;
 }
-
-/* Graphic/Logo Stylings */
-/* .outlineText {
-  margin: 0px;
-  -webkit-text-stroke: 3px white;
-  -webkit-text-fill-color: pink;
-  font-size: 3.5vw;
-}
-
-.solidText {
-  margin: 0px;
-  font-size: 5.25vw;
-} */

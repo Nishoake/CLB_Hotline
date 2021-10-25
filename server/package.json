@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=production node index.js",
-    "dev": "NODE_ENV=development nodemon index.js",
+    "start": "NODE_ENV=production node app.js",
+    "dev": "NODE_ENV=development nodemon app.js",
     "build:ui": "rm -rf build && cd ../client && npm run build --prod && cp -r build ../server",
     "test": "NODE_ENV=test jest --verbose --runInBand"
   },

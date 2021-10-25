@@ -31,10 +31,10 @@ function App() {
       {/* Div for the Text portion of the App */}
       <animated.div style={propsTop} className="pitch">
         <div className="ms-word-center">
-          <Question question="Growing impatient for the release of Drake's Certified Lover Boy?" />
+          <Question question="Growing impatient for the release of your favourite artist's next album?" />
         </div>
         <div className="ms-word-center">
-          <Blurb blurb='C.L.B. Hotline is a simple web app built to solve this very problem. The app will send subscribers an SMS text mesage to their phone once the album is available on streaming platforms. Currently only Canadian and U.S. mobile numbers are supported 🇨🇦 & 🇺🇸' />
+          <Blurb blurb='Look no further, C.L.B. Hotline is a web app built to solve this very problem. The app will send subscribers an SMS text mesage to their phone once highly anticipated albums are available on streaming platforms. Currently only Canadian and U.S. mobile numbers are supported 🇨🇦 & 🇺🇸' />
         </div>
         <div className="ms-word-center bottom">
           <Blurb blurb='Feel free to subscribe with the interactive onboarding process below 👇🏾' />

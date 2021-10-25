@@ -3,71 +3,12 @@ import { ConversationalForm } from 'conversational-form'
 import newUser from '../services/newUser'
 import '../styles/main.css'
 import DP from '../assets/CLB_DP.jpg'
+import formFields from '../assets/formFields'
 
 export default function CForm() {
   // Create a reference object for the form component to append to
   // Allows form component to persist throughout multiple renders
   const ref = useRef();
-
-  // Defining the form inputs
-  const formFields = [
-    {
-      'tag': 'cf-robot-message',
-      'type': 'text',
-      'name': 'greeting_1',
-      'cf-questions': 'Yo what\'s going on? It\'s The Boy, a.k.a. Drake 🌎'
-    },
-    {
-      'tag': 'cf-robot-message',
-      'type': 'text',
-      'name': 'greeting_2',
-      'cf-questions': 'In case you were wondering, I\'m still making the final tweaks to C.L.B. 🌹'
-    },
-    {
-      'tag': 'cf-robot-message',
-      'type': 'text',
-      'name': 'greeting_3',
-      'cf-questions': 'But to make it up to you as a fan, I will personally text you once I drop C.L.B. 💽'
-    },
-    {
-      'tag': 'input',
-      'type': 'text',
-      'name': 'firstname',
-      'id': 'firstname',
-      'required': '',
-      'minlength': '3',
-      'maxlength': '15',
-      'cf-questions': "First off, do you have name or nickname you go by?",
-      'cf-input-placeholder': "Eg. The Boy",
-      'cf-error': '3 - 15 characters',
-    },
-    {
-      'tag': 'cf-robot-message',
-      'type': 'text',
-      'name': 'greeting_4',
-      'cf-questions': "Nice to meet you {firstname}! 🤝",
-      'cf-conditional-continue': 'yes'
-    },
-    {
-      'tag': 'input',
-      'type': 'tel',
-      'pattern': "[0-9]{10}",
-      'name': 'phoneNumber',
-      'id': 'phoneNumber',
-      'required': '',
-      'minlength': '10',
-      'maxlength': '10',
-      'cf-questions': "So {firstname}, what is your cell phone number?",
-      'cf-input-placeholder': "10 digit Eg. 4161234567",
-      'cf-error': '10 digit number no dashes'
-    },
-    {
-      'tag': 'cf-robot-message',
-      'type': 'text',
-      'name': 'adding_Contact_Info_1',
-      'cf-questions': "Alright {firstname}! Give me a minute to verify and add you to my contacts ⏳"
-    },
-  ]
 
   // Lifecycle methods of the form component
   useEffect(function mount() {
@@ -87,19 +28,19 @@ export default function CForm() {
           `This is an invalid Canadian 🇨🇦 / American 🇺🇸 cell phone number {firstname} 😂`
         )
         cf.addRobotChatResponse(
-          `KMT ... I took a break from C.L.B., now it's back to that, {firstname} ✌🏼`
+          `KMT ... my time is precious like a Patek Philippe, {firstname} ✌🏼`
         )
 
       } else if (response === "Non-unique number"){
         
         cf.addRobotChatResponse(
-          `You must love talking with me {firstname} 😂`
+          `{firstname}, you must love talking with me 😂`
         )
         cf.addRobotChatResponse(
           `You've already subscribed to the C.L.B. Hotline ✍🏼`
         )
         cf.addRobotChatResponse(
-          `I gotta get back to C.L.B., but until next time {firstname} ✌🏼`
+          `Until next time {firstname} ✌🏼`
         )
 
       } else{
@@ -114,10 +55,7 @@ export default function CForm() {
           `If you change your mind just text 'TAKECARE' to ${response.secret} to unsubscribe`
         )
         cf.addRobotChatResponse(
-          `In the meantime there will be notifications for other album drops I'm excited for like Travis Scott's Utopia🎶`
-        )
-        cf.addRobotChatResponse(
-          `I gotta get back to C.L.B., but until next time {firstname} ✌🏼`
+          `Until next time {firstname} ✌🏼`
         )
 
       }

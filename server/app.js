@@ -18,8 +18,12 @@ app.use(express.static('build'))
 // Database dependencies
 const Subscriber = require('./models/subscriber')
 
+// Checking Node Environment to connect to the correct database
+const MONGODB_URI = process.env.NODE_ENV === 'test'
+  ? process.env.MONGODB_TEST_URI
+  : process.env.MONGODB_URI
+
 // Connecting to the database
-const MONGODB_URI = process.env.MONGODB_URI
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 // Twilio Constants
