@@ -15,7 +15,7 @@ const formFields = [
     'tag': 'cf-robot-message',
     'type': 'text',
     'name': 'greeting_3',
-    'cf-questions': 'C.L.B. Hotline was a fun experience, and I wanted to continue sending texts for future albums that I am personally anticipating like Travis Scott\'s Utopia 💽'
+    'cf-questions': 'C.L.B. Hotline was a fun experience, and I wanted to continue sending texts for future albums that I am personally anticipating such as Adele\'s 30 & Travis Scott\'s Utopia 💽'
   },
   {
     'tag': 'input',

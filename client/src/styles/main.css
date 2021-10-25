@@ -10,7 +10,6 @@ html {
   /* Grid-Template-Areas */
   .parent {
     color: white;
-    /* font-family: 'Alata', sans-serif; */
     font-family: 'Futura', sans-serif;
     display: grid;
     grid-template-columns: auto 550px 50px 600px auto;
@@ -42,6 +41,8 @@ html {
   .solidText {
     margin: 0px;
     font-size: 65px;
+    text-shadow: 20px 20px 50px #d20074, 
+            -10px -10px 40px #d20020;
   }
 
   /* Responsive Form Stylings */
@@ -60,7 +61,6 @@ html {
   /* Grid-Template-Areas */
   .parent {
     color: white;
-    /* font-family: 'Alata', sans-serif; */
     font-family: 'Futura', sans-serif;
     display: grid;
     grid-template-columns: 50px 1fr 1fr 50px;
@@ -110,7 +110,6 @@ html {
   /* Grid-Template-Areas */
   .parent {
     color: white;
-    /* font-family: 'Alata', sans-serif; */
     font-family: 'Futura', sans-serif;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -138,13 +137,11 @@ html {
     -webkit-text-stroke: 3px white;
     -webkit-text-fill-color: pink;
     font-size: 9vw;
-    /* font-size: 30px; */
   }
 
   .solidText {
     margin: 0px;
     font-size: 12vw;
-    /* font-size: 40px; */
   }
 
   /* Responsive Form Stylings */

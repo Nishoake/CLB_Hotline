@@ -44,8 +44,7 @@ const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
 // Intialize port
 const port = process.env.PORT || 3005
 app.listen(port, () => {
-  // Should we get rid of this?
-  console.log(`Certified Lover Boy Hotline app is currently listening at ${port}`)
+  // console.log(`Certified Lover Boy Hotline app is currently listening at ${port}`)
 })
 
 // Defining Detection Constants
@@ -105,9 +104,12 @@ app.post('/api', async (request, response) => {
   response.send(confirmation)
 })
 
-// Opt-out via text functionality
+
+// Following POST route serves as a webhook for handling incoming messages to the Twilio phone number
+// Through the Twilio dashboard, set the webhook address to the following POST route
+
 app.post('/bling', async (request, response) => {
-  // Intializing Twilio Messaging Response
+  // Intializing Twilio Messaging Response Object
   const twiml = new MessagingResponse()
 
   // save the From # and text body into constants, 'sender' and 'text' respectively
@@ -118,20 +120,26 @@ app.post('/bling', async (request, response) => {
     // Querying database for a matching number
     let user = await Subscriber.findOne({ number: sender })
 
-    // Handling the text message from the request object
-    if (user) {
-      // Added second condition to cover fringe case of user using the autocomplete feature
-      // Which would result in an additional space
+    if (user) {  // Handling a text message from an existing user
+      
+      // if statement to check for Opt-out text use case
+      // Added second condition to cover fringe case of an extra space if user uses autocorrect while typing 'TAKECARE'
       if ('TAKECARE'.localeCompare(text, undefined, { sensitivity: 'accent' }) === 0 || 'TAKECARE '.localeCompare(text, undefined, { sensitivity: 'accent' }) === 0) {
         await Subscriber.findByIdAndDelete(user._id)
 
+        // Send confirmation text that user has successfully unsubscribed
         twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
-      } else {
+
+      } else {  // Easter Egg Feature: Send randomized Drake Lyric
+        
+        // Generate a randomn Drake lyric from imported array
         let randomNumber = utility.randomize(data.lyrics.length - 1)
 
-        twiml.message(`${data[randomNumber]}`)
+        // Send Drake lyric text
+        twiml.message(`${data.lyrics[randomNumber]}`)
       }
-    } else {
+      
+    } else {  // Handling a text message from a non-existing user
       twiml.message(`Signup for the C.L.B. Hotline at: https://clb-hotline.herokuapp.com/`)
     }
 
@@ -141,5 +149,4 @@ app.post('/bling', async (request, response) => {
   } catch (error) {
     console.error(`Error => ${error}`)
   }
-  
 })
