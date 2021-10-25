@@ -1,24 +1,29 @@
+// Dependencies
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const Twilio = require('twilio')
 const MessagingResponse = require('twilio').twiml.MessagingResponse
-const detectModule = require('./controllers/detection')
-const detect = detectModule.detect
+
+// Import modules using CommonJS Module syntax
+const detectModule = require('./services/detection')
+const utility = require('./services/utility')
+const data = require('./data/data')
 
 require('dotenv').config()
 
-app = express()
+// Initialzing the Express App
+const app = express()
 
 // Middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static('build'))
 
-// Database dependencies
+// Database model dependency
 const Subscriber = require('./models/subscriber')
 
-// Checking Node Environment to connect to the correct database
+// Checking Node Environment variable to connect to the correct database
 const MONGODB_URI = process.env.NODE_ENV === 'test'
   ? process.env.MONGODB_TEST_URI
   : process.env.MONGODB_URI
@@ -36,42 +41,6 @@ const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
 
 
 // -------------------------------
-// Defining Functions
-// Twilio Lookup
-async function lookup(number){
-  try{
-    // Validate number using Twilio Lookup
-    let result = await TwilioApi.lookups.phoneNumbers(number).fetch()
-
-    // Returning the number in format expected by database
-    return result.phoneNumber
-  } catch(error){
-      console.error(`Not a valid North American number => ${error}`)
-      return null
-  }
-}
-
-// Twilio Confirmation Text
-async function sendConfirmation(Twilio_Number, Recipient_Number, Recipient_Name) {
-  try {
-
-    let response = await TwilioApi.messages.create({
-      body: `Hey ${Recipient_Name}! You are now subscribed to the C.L.B. Hotline! If this is a mistake, or you change your mind just text 'TAKECARE' to unsubscribe`,
-      from: Twilio_Number,
-      to: Recipient_Number
-    })
-
-  } catch (error) {
-    console.error(`Not a valid mobile number => ${error}`)
-  }
-}
-
-// Randomize Function
-function randomize(max){
-  max = Math.floor(max)
-  return Math.floor(Math.random() * max)
-}
-
 // Intialize port
 const port = process.env.PORT || 3005
 app.listen(port, () => {
@@ -79,17 +48,17 @@ app.listen(port, () => {
   console.log(`Certified Lover Boy Hotline app is currently listening at ${port}`)
 })
 
-// Detection Constants
+// Defining Detection Constants
 const artistID = process.env.ARTIST_ID
 let clientResponse = {
   name: '',
   image: '',
   link: '',
-  boolean: false
+  boolean: false // GET RID OF THIS
 }
 
 // Running the Detection Algorithm
-detect(artistID, clientResponse)
+detectModule.detect(artistID, clientResponse)
 
 
 // -------------------------------
@@ -102,7 +71,7 @@ app.post('/api', async (request, response) => {
   const body = await request.body
 
   // Validate the number from the request
-  let number = await lookup(body.number)
+  let number = await utility.lookup(TwilioApi, body.number)
   // If not valid provide following error message
   if (!number){
     return response.send("Invalid number")
@@ -130,7 +99,7 @@ app.post('/api', async (request, response) => {
   }
 
   // Send confirmation text
-  sendConfirmation(Twilio_Number, number, body.name)
+  utility.sendConfirmation(TwilioApi, Twilio_Number, number, body.name)
 
 
   response.send(confirmation)
@@ -141,21 +110,6 @@ app.post('/bling', async (request, response) => {
   // Intializing Twilio Messaging Response
   const twiml = new MessagingResponse()
 
-  // Array of lyric responses
-  // MAKE SURE YOU IMPORT THIS ARRAY OF LYRICS TO SAVE NUMBER OF LINES FOR APP
-  const lyrics = [
-    "I'm outside in an AMG 🚘",
-    "You like to slide on a late night 🛷`",
-    "Last name Ever, First name Greatest ⭐️",
-    "You used to call me on my cellphone☎️",
-    "Line Blowing Up 💣",
-    "I could dance like Michael Jack-Son 🕺🏽",
-    "Always been a gem 💎",
-    "Put My Feelings on Ice ❄️",
-    "Somehow still heartless 💔",
-    "Heart is only getting colder 🥶",
-    "Do you love me? Are you riding?"
-  ]
   // save the From # and text body into constants, 'sender' and 'text' respectively
   const sender = request.body.From
   const text = request.body.Body
@@ -173,9 +127,9 @@ app.post('/bling', async (request, response) => {
 
         twiml.message(`${user.name} you have successfully been unsubscribed from the C.L.B. Hotline. You will not receive any more messages from this number.`)
       } else {
-        let randomNumber = randomize(lyrics.length - 1)
+        let randomNumber = utility.randomize(data.lyrics.length - 1)
 
-        twiml.message(`${lyrics[randomNumber]}`)
+        twiml.message(`${data[randomNumber]}`)
       }
     } else {
       twiml.message(`Signup for the C.L.B. Hotline at: https://clb-hotline.herokuapp.com/`)
