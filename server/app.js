@@ -49,15 +49,9 @@ app.listen(port, () => {
 
 // Defining Detection Constants
 const artistID = process.env.ARTIST_ID
-let clientResponse = {
-  name: '',
-  image: '',
-  link: '',
-  boolean: false // GET RID OF THIS
-}
 
 // Running the Detection Algorithm
-detectModule.detect(artistID, clientResponse)
+detectModule.detect(artistID)
 
 
 // -------------------------------
@@ -70,14 +64,14 @@ app.post('/api', async (request, response) => {
   const body = await request.body
 
   // Validate the number from the request
-  let number = await utility.lookup(TwilioApi, body.number)
+  const number = await utility.lookup(TwilioApi, body.number)
   // If not valid provide following error message
   if (!number){
     return response.send("Invalid number")
   }
 
   // Query database for number
-  let query = await Subscriber.findOne({ number: number })
+  const query = await Subscriber.findOne({ number: number })
   // If not unique provide following error message
   if (query) {
     return response.send("Non-unique number")
@@ -90,8 +84,8 @@ app.post('/api', async (request, response) => {
   })
 
   // Saving user
-  let newUser = await user.save()
-  let confirmation = {
+  const newUser = await user.save()
+  const confirmation = {
     name: newUser.name,
     number: newUser.number,
     secret: Twilio_Number
@@ -118,7 +112,7 @@ app.post('/bling', async (request, response) => {
 
   try {
     // Querying database for a matching number
-    let user = await Subscriber.findOne({ number: sender })
+    const user = await Subscriber.findOne({ number: sender })
 
     if (user) {  // Handling a text message from an existing user
       
@@ -133,7 +127,7 @@ app.post('/bling', async (request, response) => {
       } else {  // Easter Egg Feature: Send randomized Drake Lyric
         
         // Generate a randomn Drake lyric from imported array
-        let randomNumber = utility.randomize(data.lyrics.length - 1)
+        const randomNumber = utility.randomize(data.lyrics.length - 1)
 
         // Send Drake lyric text
         twiml.message(`${data.lyrics[randomNumber]}`)

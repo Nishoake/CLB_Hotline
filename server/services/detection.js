@@ -32,25 +32,24 @@ async function getAlbum(artistID) {
     // setAccessToken before making GET request to the Spotify API
     await authenticate()
 
-    // Checking for Single
-    // const options = {
-    //   id: artistID,
-    //   setting: {
-    //     limit: 1,
-    //     include_groups: 'appears_on'
-    //   },
-    //   available_markets: 'CA',
-    // }
-
-    // Checking for Album (default)
-    const options = {
-      id: artistID,
-      setting: {
-        limit: 1,
-        include_groups: 'album'
-      },
-      available_markets: 'CA',
-    }
+    // Ternary operator to toggle between detecting for artist's album or single
+    const options = process.env.DETECT_ALBUM === 'true'
+      ? {
+          id: artistID,
+          setting: {
+            limit: 1,
+            include_groups: 'album'
+          },
+          available_markets: 'CA',
+        }
+      : {
+          id: artistID,
+          setting: {
+            limit: 1,
+            include_groups: 'single'
+          },
+          available_markets: 'CA',
+        }
 
     const data = await spotifyApi.getArtistAlbums(options.id, options.setting)
 
@@ -69,15 +68,13 @@ async function getAlbum(artistID) {
 }
 
 
-
 // Create and send a single text message with Twilio SMS API
 async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistName, albumName, albumLink) {
   try{
-    // Message for Singles
-    // const response = `Hey ${Recipient_Name}! ${artistName}'s new single, ${albumName} is now streaming live at: ${albumLink}`
-
-    // Message for Album
-    const response = `Hey ${Recipient_Name}! ${artistName}'s new project, ${albumName} is now streaming live at: ${albumLink}`
+    // Ternary operator to toggle between detecting for artist's album or single
+    const response = process.env.DETECT_ALBUM === 'true'
+      ? `Hey ${Recipient_Name}! ${artistName}'s new project, ${albumName} is now streaming live at: ${albumLink}`
+      : `Hey ${Recipient_Name}! ${artistName}'s new single, ${albumName} is now streaming live at: ${albumLink}`
 
     // Send Message
     await TwilioApi.messages.create({
@@ -119,7 +116,7 @@ async function compareAlbum(refAlbum, artistID) {
   console.log('the detect function is being run right now')
 
   // Retrieving the latest Album from the Spotify API
-  let latestAlbum = await getAlbum(artistID)
+  const latestAlbum = await getAlbum(artistID)
   console.log(`latestAlbum: ${latestAlbum.albumName}`)
 
   // Comparing the lastest album to the ref album (last released album)
