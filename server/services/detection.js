@@ -3,21 +3,21 @@ const Twilio = require('twilio')
 const Subscriber = require('../models/subscriber')
 require('dotenv').config()
 
-// Create an instance of the Spotify API Object
-const client_id = process.env.SPOTIFY_CLIENT_ID
-const client_secret = process.env.SPOTIFY_CLIENT_SECRET
+// Initialize Twilio API Object and constant
+const Twilio_Number = process.env.TWILIO_NUMBER
+const TwilioApi = Twilio(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN)
 
+// Initialize Spotify API Object
 const spotifyApi = new SpotifyWebApi({
-  clientId: client_id,
-  clientSecret: client_secret
+  clientId: process.env.SPOTIFY_CLIENT_ID,
+  clientSecret: process.env.SPOTIFY_CLIENT_SECRET
 })
-
 
 // Authenticating with the Spotify API
 async function authenticate() {
   try {
-    let response = await spotifyApi.clientCredentialsGrant()
-    let token = response.body.access_token
+    const response = await spotifyApi.clientCredentialsGrant()
+    const token = response.body.access_token
 
     return spotifyApi.setAccessToken(token)
   }
@@ -29,9 +29,10 @@ async function authenticate() {
 // Retrieving the latest Album from the Spotify API
 async function getAlbum(artistID) {
   try {
+    // setAccessToken before making GET request to the Spotify API
     await authenticate()
 
-    // Single Check
+    // Checking for Single
     // const options = {
     //   id: artistID,
     //   setting: {
@@ -41,7 +42,7 @@ async function getAlbum(artistID) {
     //   available_markets: 'CA',
     // }
 
-    // Album Check
+    // Checking for Album (default)
     const options = {
       id: artistID,
       setting: {
@@ -51,66 +52,36 @@ async function getAlbum(artistID) {
       available_markets: 'CA',
     }
 
-    let data = await spotifyApi.getArtistAlbums(options.id, options.setting)
-
-    const artistName = data.body.items[0].artists[0].name
-    const albumName = data.body.items[0].name
-    const image = data.body.items[0].images[0].url
-    const link = data.body.items[0].external_urls.spotify
+    const data = await spotifyApi.getArtistAlbums(options.id, options.setting)
 
     const package = {
-      artistName: artistName,
-      albumName: albumName,
-      image: image,
-      link: link
+      artistName: data.body.items[0].artists[0].name,
+      albumName: data.body.items[0].name,
+      image: data.body.items[0].images[0].url,
+      link: data.body.items[0].external_urls.spotify
     }
 
     return package
   }
   catch (err) {
-    console.log("Something went wrong requesting the artist album", err)
+    console.error(`Something went wrong requesting the ${artistID} album => ${err}`)
   }
 }
 
-// Twilio Constants
-const Twilio_SID = process.env.TWILIO_ACCOUNT_SID
-const Twilio_Token = process.env.TWILIO_AUTH_TOKEN
-const Twilio_Number = process.env.TWILIO_NUMBER
 
-const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
 
-// Updating the clientResponse with the newly droped album details
-function updateClientRespone(clientResponse, newName, newImage, newLink) {
-  clientResponse.name = newName
-  clientResponse.image = newImage
-  clientResponse.link = newLink
-  clientResponse.boolean = true
-}
-
-// Send text message with Twilio SMS API
+// Create and send a single text message with Twilio SMS API
 async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistName, albumName, albumLink) {
-
-  // uncomment for the default drop message
-  // `THIS IS NOT A DRILL ${Recipient_Name}! ${albumName} is streaming live at: ${albumLink}`
-
   try{
     // Message for Singles
-    // let response = await TwilioApi.messages.create({
-    //   body: `Wagawn ${Recipient_Name}! Check me out on ${artistName}'s new single, ${albumName} now streaming live at: ${albumLink}`,
-    //   from: Twilio_Number,
-    //   to: Twilio_Recipient
-    // })
+    // const response = `Hey ${Recipient_Name}! ${artistName}'s new single, ${albumName} is now streaming live at: ${albumLink}`
 
-    // // Message for CLB
-    // let response = await TwilioApi.messages.create({
-    //   body: `Hey ${Recipient_Name}! My album ${albumName} has been delivered 🏹💘🤰🏽👼🏾  and is now streaming live at: ${albumLink}`,
-    //   from: Twilio_Number,
-    //   to: Twilio_Recipient
-    // })
+    // Message for Album
+    const response = `Hey ${Recipient_Name}! ${artistName}'s new project, ${albumName} is now streaming live at: ${albumLink}`
 
-    // Message for other Albums
-    let response = await TwilioApi.messages.create({
-      body: `Hey ${Recipient_Name}! ${artistName}'s new project, ${albumName} is now streaming live at: ${albumLink}`,
+    // Send Message
+    await TwilioApi.messages.create({
+      body: response,
       from: Twilio_Number,
       to: Twilio_Recipient
     })
@@ -121,59 +92,54 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
 }
 
 // Sending text messages to all subscribers
-async function hotlineBling(albumInfo) {
+async function sendToAll(albumInfo) {
   try{
     // Destructuring Album object
     const artistName = albumInfo.artistName
     const albumName = albumInfo.albumName
     const albumLink = albumInfo.link
 
-    // Array of subscribers
+    // Query Database to get an Array of all the subscribers
     const subscribers = await Subscriber.find()
 
+    // Running a for loop on the subscribers array to send text message to each subscriber
     for (let i = 0; i < subscribers.length; i++) {
       const name = subscribers[i].name
       const number = subscribers[i].number
 
       await sendText(Twilio_Number, number, name, artistName, albumName, albumLink)
     }
-
   } catch{
-      console.error(`Something went wrong sending texts => ${error}`)
+      console.error(`Error sending texts => ${error}`)
   }
 }
 
-// Detection Algorithm
-async function detect(refAlbum, artistID, clientResponse) {
+// Recursive Function comparing the last released album to the result from the getAlbum function
+async function compareAlbum(refAlbum, artistID) {
   console.log('the detect function is being run right now')
 
   // Retrieving the latest Album from the Spotify API
   let latestAlbum = await getAlbum(artistID)
   console.log(`latestAlbum: ${latestAlbum.albumName}`)
 
-  // Comparing the lastest album to the ref album
+  // Comparing the lastest album to the ref album (last released album)
   if (latestAlbum.albumName === refAlbum.albumName) {
-    setTimeout(detect, 30000, refAlbum, artistID, clientResponse)
+    // Ping API every 30 seconds
+    setTimeout(compareAlbum, 30000, refAlbum, artistID)
   }
   else {
-    // Sending Texts
-    console.log(`${latestAlbum.albumName} has dropped!`)
-    // COMMENT FOR TESTING
-    hotlineBling(latestAlbum)
-
-    // Updating the Client's NewAlbum component
-    updateClientRespone(clientResponse, latestAlbum.albumName, latestAlbum.image, latestAlbum.link)
+    // Send Texts that new album has dropped
+    sendToAll(latestAlbum)
   }
 }
 
 
-// Function Implementing the Detection Algorithm and the associated overhead
-async function detectAlbum(artistID, clientResponse) {
-  // Initializing the reference album to compare against
+// Function Implementing the compareAlbum function and the associated overhead
+async function detectAlbum(artistID) {
+  // Initializing the last released album
   const refAlbum = await getAlbum(artistID)
 
-  // Calling the Detection Algorithm
-  detect(refAlbum, artistID, clientResponse)
+  compareAlbum(refAlbum, artistID)
 }
 
 
