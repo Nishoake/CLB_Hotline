@@ -28,8 +28,14 @@ const MONGODB_URI = process.env.NODE_ENV === 'test'
   ? process.env.MONGODB_TEST_URI
   : process.env.MONGODB_URI
 
+// Defining Detection Constants
+const artistID = process.env.ARTIST_ID
+
 // Connecting to the database
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+if (process.env.NODE_ENV !== 'test') {
+  detectModule.detect(artistID)
+  mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+}
 
 // Twilio Constants
 const Twilio_SID = process.env.TWILIO_ACCOUNT_SID
@@ -38,21 +44,6 @@ const Twilio_Number = process.env.TWILIO_NUMBER
 
 // Instantiating Twilio API Object
 const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
-
-
-// -------------------------------
-// Intialize port
-const port = process.env.PORT || 3005
-app.listen(port, () => {
-  // console.log(`Certified Lover Boy Hotline app is currently listening at ${port}`)
-})
-
-// Defining Detection Constants
-const artistID = process.env.ARTIST_ID
-
-// Running the Detection Algorithm
-detectModule.detect(artistID)
-
 
 // -------------------------------
 // Routes
@@ -144,3 +135,5 @@ app.post('/bling', async (request, response) => {
     console.error(`Error => ${error}`)
   }
 })
+
+module.exports = app

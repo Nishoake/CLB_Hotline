@@ -6,7 +6,6 @@ Was originally created for the release of Drake's Certified Lover Boy, but now w
 
 Check the project out at: <https://clb-hotline.herokuapp.com>
 
-
 ## How I worked on this project
 
 [placeholder text]

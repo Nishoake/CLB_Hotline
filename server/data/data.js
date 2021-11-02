@@ -1,3 +1,4 @@
+// Array of lyrics for randomized output texts
 const lyrics = [
   "I'm outside in an AMG 🚘",
   "You like to slide on a late night 🛷`",

@@ -53,14 +53,14 @@ async function getAlbum(artistID) {
 
     const data = await spotifyApi.getArtistAlbums(options.id, options.setting)
 
-    const package = {
+    const carePackage = {
       artistName: data.body.items[0].artists[0].name,
       albumName: data.body.items[0].name,
       image: data.body.items[0].images[0].url,
       link: data.body.items[0].external_urls.spotify
     }
 
-    return package
+    return carePackage
   }
   catch (err) {
     console.error(`Something went wrong requesting the ${artistID} album => ${err}`)
