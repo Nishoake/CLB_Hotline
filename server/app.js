@@ -28,14 +28,8 @@ const MONGODB_URI = process.env.NODE_ENV === 'test'
   ? process.env.MONGODB_TEST_URI
   : process.env.MONGODB_URI
 
-// Defining Detection Constants
-const artistID = process.env.ARTIST_ID
-
 // Connecting to the database
-if (process.env.NODE_ENV !== 'test') {
-  detectModule.detect(artistID)
-  mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-}
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 // Twilio Constants
 const Twilio_SID = process.env.TWILIO_ACCOUNT_SID
@@ -44,6 +38,12 @@ const Twilio_Number = process.env.TWILIO_NUMBER
 
 // Instantiating Twilio API Object
 const TwilioApi = Twilio(Twilio_SID, Twilio_Token)
+
+// Defining Detection Constants
+const artistID = process.env.ARTIST_ID
+
+// Conditional for detection algorithm
+if (process.env.NODE_ENV !== 'test') detectModule.detect(artistID)
 
 // -------------------------------
 // Routes
@@ -85,8 +85,7 @@ app.post('/api', async (request, response) => {
   // Send confirmation text
   utility.sendConfirmation(TwilioApi, Twilio_Number, number, body.name)
 
-
-  response.send(confirmation)
+  response.status(201).send(confirmation)
 })
 
 

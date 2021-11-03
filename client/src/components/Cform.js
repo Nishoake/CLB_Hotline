@@ -25,7 +25,7 @@ export default function CForm() {
       if (response === "Invalid number"){
         
         cf.addRobotChatResponse(
-          `This is an invalid Canadian 🇨🇦 / American 🇺🇸 cell phone number {firstname} 😂`
+          `This is an invalid Canadian 🇨🇦 / American 🇺🇸 cell phone number, {firstname} 😂`
         )
         cf.addRobotChatResponse(
           `KMT ... my time is precious like a Patek Philippe, {firstname} ✌🏼`
