@@ -16,6 +16,16 @@ Open [http://localhost:3005](http://localhost:3005) to view it in the browser.
 Runs the app in the development mode.\
 Open [http://localhost:3005](http://localhost:3005) to view it in the browser.
 
+### `npm test`
+
+Runs the app in the test mode.\
+Open CLI to view results of the test suites.
+
+### `npm run test:watch`
+
+Runs the app in the test mode.\
+Allows for live reloading when changes to files associated with tests are saved. Open CLI to view results of the test suites.
+
 ### `npm run build:ui`
 
 Builds the app for production to the `build` folder.\
