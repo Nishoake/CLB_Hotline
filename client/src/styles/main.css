@@ -6,7 +6,7 @@ html {
 
 /* media queries for responsive design */
 /* max size */
-@media (max-width: 3000px) {
+@media (min-width: 1200px) {
   /* Grid-Template-Areas */
   .parent {
     color: white;
@@ -92,6 +92,8 @@ html {
   .solidText {
     margin: 0px;
     font-size: 5.25vw;
+    text-shadow: 20px 20px 50px #d20074,
+        -10px -10px 40px #d20020;
   }
 
   /* Responsive Form Stylings */
@@ -142,6 +144,8 @@ html {
   .solidText {
     margin: 0px;
     font-size: 12vw;
+    text-shadow: 20px 20px 50px #d20074,
+        -10px -10px 40px #d20020;
   }
 
   /* Responsive Form Stylings */

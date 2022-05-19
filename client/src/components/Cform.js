@@ -81,7 +81,7 @@ export default function CForm() {
       cf.remove();
     }
 
-  }, [formFields])
+  }, [])
 
   // Render the form by creating a div with the ref attribute assigined to the ref object created via the useRef hook above
   return (

@@ -29,8 +29,8 @@ async function sendConfirmation(TwilioApi, Twilio_Number, Recipient_Number, Reci
 }
 
 // Randomize Function
-function randomize(max) {
-  max = Math.floor(max)
+function randomize(arrayLength) {
+  const max = Math.floor(arrayLength)
   return Math.floor(Math.random() * max)
 }
 
