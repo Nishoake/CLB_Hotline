@@ -73,10 +73,10 @@ async function sendText(Twilio_Number, Twilio_Recipient, Recipient_Name, artistN
   try{
     // Ternary operator to toggle between detecting for artist's album or single
     const response = process.env.DETECT_ALBUM === 'true'
-      ? `Hey ${Recipient_Name}! The forecast is calling for a strong chance of oppy weather outside, to protect yourself from the elements check out my new project with 21 Savage 🔪, ${albumName} 😈🥀 now streaming live at: ${albumLink}`
-      : `Hey ${Recipient_Name}! ${artistName}'s new single/EP, ${albumName} is now streaming live at: ${albumLink}`
-      // ? `Hey ${Recipient_Name}! ${artistName}'s new project, ${albumName} is now streaming live at: ${albumLink}`
+      // ? `Hey ${Recipient_Name}! The forecast is calling for a strong chance of oppy weather outside, to protect yourself from the elements check out my new project with 21 Savage 🔪, ${albumName} 😈🥀 now streaming live at: ${albumLink}`
       // : `Hey ${Recipient_Name}! ${artistName}'s new single/EP, ${albumName} is now streaming live at: ${albumLink}`
+      ? `Hey ${Recipient_Name}! ${artistName}'s new project, ${albumName} is now streaming live at: ${albumLink}`
+      : `Hey ${Recipient_Name}! ${artistName}'s new single/EP, ${albumName} is now streaming live at: ${albumLink}`
 
     // Send Message
     await TwilioApi.messages.create({
